@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول</title>
+<link rel="stylesheet" href="../project/css/header.css">
+<link rel="stylesheet" href="../project/css/footer.css">
+<link rel="stylesheet" href="css/login.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="middle-header">
+        <div class="logo">
+            <a href="../project/index.html"><img src="assets/logo.png" alt="شعار زيارة"></a>
+        </div>
+        <div class="search">
+            <input type="search" placeholder="ابحث عن طبيب أو خدمة...">
+        </div>
+        <div class="theme-toggle" onclick="toggleTheme()">
+            <i class="fa-solid fa-moon"></i>
+        </div>
+        <div class="lang">
+            <i class="fa-solid fa-earth-americas"></i>
+            <select>
+                <option>العربية</option>
+                <option>English</option>
+            </select>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav">
+            <a href="index.html">الرئيسية</a>
+            <div class="list-services">
+                <a href="">الخدمات   <i class="fa-solid fas fa-angle-down"></i></a>
+                <ul class="items-services">
+                    <li>طلب طبيب</li>
+                    <li>طلب تمريض</li>
+                    <li>أخذ عينة</li>
+                    <li>علاج طبيعي</li>                        
+                </ul>              
+            </div>
+            <a href="#">نصائح طبية</a>
+            <a href="#we">من نحن</a>
+            <a href="#contact">تواصل معنا</a>
+        </nav>
+    </div>
+</header>
+
+<div class="login-box">
+
+    <div class="wolcome-login">
+        <div class="point">
+            <h2 class="form-title">مرحبًا بعودتك</h2>
+            <p class="form-subtitle">سجّل الدخول للوصول إلى حسابك وطلب الخدمات الطبية بسهولة وأمان.</p>
+        </div>
+
+    </div>
+
+    <form id="loginForm" method="post">
+        <div class="input-group">
+            <label for="loginEmail">البريد الإلكتروني</label>
+            <input type="email" id="loginEmail" name="email" placeholder="info@gmail.com" required>
+        </div>
+
+        <div class="input-group password-group">
+            <label for="loginPassword">كلمة المرور</label>
+            <div class="password-wrapper">
+                <input type="password" id="loginPassword" name="password" placeholder="كلمة المرور" required>
+                <i class="fa-solid fa-eye toggle-password" id="toggleLoginPassword"></i>
+            </div>
+        </div>
+
+        <div class="forgot-link">
+            <a href="#">نسيت كلمة المرور؟</a>
+        </div>
+
+        <div class="btns-form">
+            <button type="submit" class="submit-btn">تسجيل الدخول</button>
+            <button type="button" class="google-btn">اكمل باستخدام <i class="fa-brands fa-google"></i></button>
+        </div>
+
+        <div class="login-link">
+            <a href="register.html">ليس لديك حساب؟ أنشئ حساب الآن</a>
+        </div>
+
+    </form>
+</div>
+
+<footer>
+    <div class="footer-small">
+        <div class="footer-logo">
+            <img src="assets/logo.png" alt="">
+        </div>
+        <p>حقوق النشر والطبع محفوظة زيارة | &copy; 2026</p>
+    </div>
+</footer>
+
+<script src="js/login.js"></script>
+</body>
+</html>

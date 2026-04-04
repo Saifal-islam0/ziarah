@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إنشاء حساب جديد</title>
+<link rel="stylesheet" href="../project/css/header.css">
+<link rel="stylesheet" href="../project/css/footer.css">
+<link rel="stylesheet" href="../project/css/register.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+    <header class="header">
+
+    <div class="middle-header">
+
+        <div class="logo">
+            <a href="../project/index.html"><img src="assets/logo.png" alt="شعار زيارة"></a>
+        </div>
+
+        <div class="search">
+            <input type="search" placeholder="ابحث عن طبيب أو خدمة...">
+        </div>
+
+        <div class="theme-toggle" onclick="toggleTheme()">
+            <i class="fa-solid fa-moon"></i>
+        </div>
+
+        <div class="lang">                
+            <i class="fa-solid fa-earth-americas"></i>
+            <select> 
+                <option>العربية</option>
+                <option>English</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="nav-bar">
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html">الرئيسية</a>
+            <div class="list-services">
+                <a href="">الخدمات   <i class="fa-solid fas fa-angle-down"></i></a>
+                <ul class="items-services">
+                    <li>طلب طبيب</li>
+                    <li>طلب تمريض</li>
+                    <li>أخذ عينة</li>
+                    <li>علاج طبيعي</li>                        
+                </ul>              
+            </div>
+            <a href="#">نصائح طبية</a>
+            <a href="#we">من نحن</a>
+            <a href="#contact">تواصل معنا</a>
+        </nav>
+
+    </div>
+
+    </header>
+
+   <div class="register-box">
+
+
+            <div class="info">
+                <div class="point">
+                    <h3>التسجيل كمستخدم</h3>
+                    <p>سيتيح لك ميزة طلب زيارة + لديك تأمين بالاضافة الي مميزات اخري كثيرة</p>
+                </div>
+                <div class="point">
+                    <h3>التسجيل كطبيب</h3>
+                    <p>سيتيح لك ميزة تقديم خدمان زيارات منزلية لعلاج المرض بالاضافة اي مميزات اخري</p>
+                </div>
+                <div class="point">
+                    <h3>التسجيل كممرض</h3>
+                    <p>سيتيح لك ميزة تقديم خدمان زيارات منزلية لمساعدة المرض بالاضافة اي مميزات اخري</p>
+                </div>
+            </div>
+            <form id="registerForm" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="Role" id="RoleInput" value="patient" />
+                <div class="role-buttons">
+                    <button type="button" class="role-btn active" data-role="patient">مستخدم</button>
+                    <button type="button" class="role-btn" data-role="doctor">طبيب</button>
+                    <button type="button" class="role-btn" data-role="nurse">ممرض</button>
+                </div>
+
+                <div class="double-input" id="separateNameFields">
+                    <div class="input-group">
+                        <label>الاسم الأول</label>
+                        <input type="text" name="firstName" required>
+                    </div>
+                    <div class="input-group">
+                        <label>الاسم الأخير</label>
+                        <input type="text" name="lastName" required>
+                    </div>
+                </div>
+                <div class="double-input">
+                    <div class="input-group">
+                        <label>رقم الهاتف</label>
+                        <input type="text" name="phone" placeholder="01xxxxxxxxx" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" name="email" placeholder="info@gmail.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group password-group">
+                    <label>كلمة المرور</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" placeholder="كلمة المرور" required>
+                        <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
+                    </div>
+                </div>
+                <div class="input-group" id="specializationField" style="display:none;">
+                    <label for="specialization">التخصص</label>
+                    <div class="custom-select-wrapper">
+                        <select name="specialization" id="specialization" class="custom-select">
+                            <option value="">اختر التخصص</option>
+
+                        </select>
+                        <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+                    </div>
+                </div>
+
+                <div class="input-group file-upload" id="proofField">
+                    <label for="document" id="documentLabel">بطاقة الرقم القومي</label>
+                    <input type="file" id="document" name="document" accept="image/*" multiple>
+                </div>  
+
+                <div class="input-group file-upload" id="certificateField" style="display:none;">
+                    <label for="certificate" id="certificateLabel">شهادة مزاولة المهنة</label>
+                    <input type="file" id="certificate" name="certificate" accept="image/*">
+                </div>           
+                <div class="input-group" id="insuranceField">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="hasInsurance">
+                        <span class="checkmark"></span>
+                        هل لديك تأمين أعضاء هيئة التدريس؟
+                    </label>
+                    <div class="input-group file-upload" id="insuranceUpload" style="display:none;">
+                        <label for="insuranceDoc" id="insuranceLabel">ارفع صورة الكارنيه</label>
+                        <input type="file" id="insuranceDoc" name="insuranceDoc" accept="image/*">
+                    </div>                 
+                </div>
+                <div class="btns-form">
+                    <button type="submit" class="submit-btn">تسجيل الحساب</button>
+                    <button class="google-btn">    اكمل باستخدام <i class="fa-brands fa-google"></i></button>
+                </div>
+
+                <div class="terms-box">
+                    <label class="custom-checkbox terms-check">
+                        <input type="checkbox" id="acceptTerms" required>
+                        <span class="checkmark"></span>
+                        أوافق على 
+                        <a href="#">سياسة الخصوصية</a> 
+                        و 
+                        <a href="#">شروط الاستخدام</a>
+                    </label>
+                </div>
+                <div class="login-link">
+                    <a href="login.html">لدي حساب بالفعل؟</a>
+                </div>
+            </form>
+
+        </div>
+
+    <footer>   
+        <div class="footer-small">
+            <div class="footer-logo">
+                <img src="assets/logo.png" alt="">
+            </div>
+            <p> حقوق النشر والطبع محفوظه زيارة | &copy;  2026</p>
+        </div>
+    </footer>
+
+<script src="js/register.js"></script>
+</body>
+</html>
