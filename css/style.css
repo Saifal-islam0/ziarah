@@ -152,9 +152,8 @@ p{
     color:#fff;
 }
 
-.emergency-overlay,
-.overlay,
-.success-overlay{
+
+.emergency-overlay{
     position:fixed;
     top:0;
     left:0;
@@ -164,24 +163,49 @@ p{
     display:none;
     align-items:center;
     justify-content:center;
+    z-index: 100;
 }
-
-.emergency-modal,
-.success-modal{
-    background:#fff;
-    border-radius:20px;
+.emergency-modal{
+    min-width : 300px;
+    background:white;
+    padding:35px;
+    border-radius: 5px;
     text-align:center;
     position:relative;
 }
+.emergency-modal span {
+    font-size: 25px;
+    color: #128CCF;
+}
+.emergency-modal span:hover {
+    color: #0f76b3;    
 
-.emergency-modal{
-    width:380px;
-    padding:35px;
 }
 
-.success-modal{
-    width:450px;
-    padding:40px;
+.emergency-number {
+    color:#128CCF;
+    font-weight: bold;
+}
+.emergency-icon{
+    font-size: 45px;
+    color:#e63c4a;
+    margin-bottom:15px;
+}
+
+.call-btn{
+    display:block;
+    text-align:center;
+    width:100%;
+    padding:8px;
+    border-radius: 30px;
+    background:#ee3848;
+    color:white;
+    font-size: 16px;
+    text-decoration:none;
+}
+
+.call-btn:hover {
+    background: #e43644;
 }
 
 .we{
@@ -568,7 +592,8 @@ p{
 
 body.dark-mode .we,
 body.dark-mode .provide,
-body.dark-mode .contact-section {
+body.dark-mode .contact-section,
+body.dark-mode .emergency-modal {
     background: #111113;
 }
 

@@ -5,14 +5,13 @@ footer {
 .footer-small {
     width: 85%;
     margin: 50px auto;
-    background-color: white ;
+    background: white ;
     padding: 0px 30px;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    z-index: 3;
 }
 
 .footer-logo img {

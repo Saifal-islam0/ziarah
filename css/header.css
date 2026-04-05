@@ -98,11 +98,12 @@
     justify-content: center;
     align-items: center;
     gap: 6px;
-    border: 1px solid #0d3b66;
-    border-radius: 5px;
+    border: 1.5px solid #0f76b3;
+    border-radius: 30px;
     padding: 4px 10px;
     transition: 0.3s;
     cursor: pointer;
+    transition: 0.5s;
 }
 
 .lang select {
@@ -113,18 +114,17 @@
     cursor: pointer;
     background: transparent;
     font-size: 13px;
-    color: #0d3b66;
+    color: #0f76b3;
     font-weight: 600;
 }
 
 .lang i {
     font-size: 16px;
-    color: #0d3b66;
+    color: #0f76b3;
 }
 
 .lang:hover {
-    background: #0d3b66;
-    border-color: #0d3b66;
+    background: #128CCF;
 }
 
 .lang:hover i,

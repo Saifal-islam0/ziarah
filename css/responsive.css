@@ -238,14 +238,10 @@ html, body {
     }
 
     .emergency-modal {
-        width: 90%;
+        width: 80%;
         padding: 25px 20px;
     }
 
-    .success-modal {
-        width: 90%;
-        padding: 25px 20px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -325,7 +321,11 @@ html, body {
     .nav a {
         font-size: 13px;
     }
-
+    .services::before , .services::after{
+        width: 300px;
+        height: 300px;
+        border: 70px solid rgba(255,255,255,0.07);
+    }
 
     .card-sc {
         padding: 50px 15px 20px;

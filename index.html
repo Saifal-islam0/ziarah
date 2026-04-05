@@ -55,21 +55,21 @@
         </div>
 
         <nav class="nav">
-        <div class="lang-theme">
+            <div class="lang-theme">
 
-            <div class="nav-theme" onclick="toggleTheme()" >
-                <i class="fa-solid fa-moon" id="navThemeIcon"></i>
-                <span>تغيير الوضع</span>
-            </div>
+                <div class="nav-theme" onclick="toggleTheme()" >
+                    <i class="fa-solid fa-moon" id="navThemeIcon"></i>
+                    <span>تغيير الوضع</span>
+                </div>
 
-            <div class="nav-lang" >
-                <i class="fa-solid fa-earth-americas"></i>
-                <select onchange="changeLang(this.value)">
-                    <option value="ar">العربية</option>
-                    <option value="en">English</option>
-                </select>
+                <div class="nav-lang" >
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <select onchange="changeLang(this.value)">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
             </div>
-        </div>
             <a href="index.html">الرئيسية</a>
             <div class="list-services">
                 <a href="">الخدمات   <i class="fa-solid fas fa-angle-down"></i></a>
@@ -108,29 +108,43 @@
             <div class="circle-bg"></div>
             <img class="main-img" src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="">
         </div>
-            <div class="text-center">
-                <span>رعايتك الصحية تبدأ من هنا</span>
-                <p>نقدم لك خدمات طبية متكاملة بأعلى معايير الجودة، حيث نحرص على توفير رعاية صحية آمنة وسريعة على يد نخبة من الأطباء
-                    المتخصصين وباستخدام أحدث التقنيات الطبية
-                </p>
+        <div class="text-center">
+            <span>رعايتك الصحية تبدأ من هنا</span>
+            <p>نقدم لك خدمات طبية متكاملة بأعلى معايير الجودة، حيث نحرص على توفير رعاية صحية آمنة وسريعة على يد نخبة من الأطباء
+                المتخصصين وباستخدام أحدث التقنيات الطبية
+            </p>
 
-                <div class="btns-main">
-                    <button class="book-now">
-                        اطلب زيارة الان <i class="fa-solid fa-arrow-left"></i>
-                    </button>
+            <div class="btns-main">
+                <button class="book-now">
+                    اطلب زيارة الان <i class="fa-solid fa-arrow-left"></i>
+                </button>
 
-                    <button class="insurance">
-                        لدي تأمين <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                </div>
-                <div class="btn-emerg">
-                    <button class="emerg" onclick="openEmergency()">
-                        طوارئ <i class="fa-solid fa-triangle-exclamation"></i>
-                    </button>
-                </div>
-
+                <button class="insurance">
+                    لدي تأمين <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+            <div class="btn-emerg">
+                <button class="emerg" onclick="openEmergency()">
+                    طوارئ <i class="fa-solid fa-triangle-exclamation"></i>
+                </button>
             </div> 
         </div> 
+    </div>
+        <div class="emergency-overlay" id="emergencyModal">
+            <div class="emergency-modal">
+                <span class="close" onclick="closeEmergency()">
+                <i  class="fa-solid fa-xmark" ></i>
+                </span>
+                <div class="emergency-icon">
+                <i class="fa-solid fa-phone"></i>
+                </div> 
+                <h2>رقم الطوارئ</h2>   
+                <p class="emergency-number">123</p>   
+                <a href="tel:123" class="call-btn">
+                    اتصل الآن
+                </a>
+            </div>
+        </div>
     </main>
 
     <section class="we" id="we">
@@ -221,19 +235,19 @@
 
             <div class="services-cards">    
                 <div class="card-sc">
-                    <div class="icon"><li><i class="fa-solid fa-user-doctor"></i></i></div>
+                    <div class="icon"><i class="fa-solid fa-user-doctor"></i></div>
                     <h3>طلب طبيب</h3>
                 </div>
                 <div class="card-sc">
-                    <div class="icon"><li><i class="fa-solid fa-user-nurse"></i></i></div>
+                    <div class="icon"><i class="fa-solid fa-user-nurse"></i></div>
                     <h3>طلب تمريض</h3>
                 </div>
                 <div class="card-sc">
-                    <div class="icon"><i class="fa-solid fa-vials"></i> </li></i></div>
+                    <div class="icon"><i class="fa-solid fa-vials"></i></div>
                     <h3>أخذ عينة</h3>
                 </div>
                 <div class="card-sc">
-                    <div class="icon"> <i class="fa-solid fa-user-injured"></i></i> </i></div>
+                    <div class="icon"> <i class="fa-solid fa-user-injured"></i></div>
                     <h3>علاج طبيعي</h3>
                 </div>
 
@@ -318,3 +332,4 @@
     <script src="js/script.js"></script>
     <script src="js/responsive.js"></script>
 </body>
+</html>

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تسجيل الدخول</title>
+<title>تأكيد الكود</title>
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/verifyCode.css">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -26,8 +26,8 @@
         <div class="lang">
             <i class="fa-solid fa-earth-americas"></i>
             <select>
-                <option>العربية</option>
-                <option>English</option>
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
             </select>
         </div>
     </div>
@@ -39,12 +39,11 @@
         </div>
         <nav class="nav">
             <div class="lang-theme">
-                <div class="nav-theme" onclick="toggleTheme()" >
+                <div class="nav-theme" onclick="toggleTheme()">
                     <i class="fa-solid fa-moon" id="navThemeIcon"></i>
                     <span>تغيير الوضع</span>
                 </div>
-
-                <div class="nav-lang" >
+                <div class="nav-lang">
                     <i class="fa-solid fa-earth-americas"></i>
                     <select onchange="changeLang(this.value)">
                         <option value="ar">العربية</option>
@@ -54,13 +53,13 @@
             </div>
             <a href="index.html">الرئيسية</a>
             <div class="list-services">
-                <a href="">الخدمات   <i class="fa-solid fas fa-angle-down"></i></a>
+                <a href="">الخدمات <i class="fa-solid fas fa-angle-down"></i></a>
                 <ul class="items-services">
                     <li>طلب طبيب</li>
                     <li>طلب تمريض</li>
                     <li>أخذ عينة</li>
-                    <li>علاج طبيعي</li>                        
-                </ul>              
+                    <li>علاج طبيعي</li>
+                </ul>
             </div>
             <a href="#">نصائح طبية</a>
             <a href="#we">من نحن</a>
@@ -69,41 +68,47 @@
     </div>
 </header>
 
-<div class="login-box">
+<div class="verify-box">
 
-    <div class="wolcome-login">
-        <h2 class="form-title">مرحبًا بعودتك</h2>
-        <p class="form-subtitle">سجّل الدخول للوصول إلى حسابك وطلب الخدمات الطبية بسهولة وأمان.</p>
+    <div class="verify">
+        <div class="verify-header">
+            <h2 class="form-title">أدخل كود التأكيد</h2>
+            <p class="form-subtitle">تم إرسال كود مكون من 4 أرقام إلى بريدك الإلكتروني</p>
+        </div>
     </div>
 
-    <form id="loginForm" method="post">
-        <div class="input-group">
-            <label for="loginEmail">البريد الإلكتروني</label>
-            <input type="email" id="loginEmail" name="email" placeholder="info@gmail.com" required>
-        </div>
+    <div class="verify-form-wrapper">
+        <div id="step1">
 
-        <div class="input-group password-group">
-            <label for="loginPassword">كلمة المرور</label>
-            <div class="password-wrapper">
-                <input type="password" id="loginPassword" name="password" placeholder="كلمة المرور" required>
-                <i class="fa-solid fa-eye toggle-password" id="toggleLoginPassword"></i>
+            <form id="verifyForm">
+                <div class="code-inputs">
+                    <input type="text" class="code-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                    <input type="text" class="code-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                    <input type="text" class="code-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                    <input type="text" class="code-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                </div>
+
+                <div class="timer-wrapper">
+                    <span>الكود صالح لمدة: <strong id="timer">5:00</strong></span>
+                </div>
+
+                <div id="errorMsg" class="error-msg" style="display:none;">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    <span>الكود غير صحيح، يرجى المحاولة مرة أخرى.</span>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn" disabled>تأكيد الكود</button>
+            </form>
+
+            <div class="resend-wrapper">
+                <span>لم يصلك الكود؟</span>
+                <button class="resend-btn" id="resendBtn"  disabled>إعادة الإرسال</button>
+            </div>
+
+            <div class="login-link">
+                <a href="forgotPassword.html">العودة لصفحة السابقة</a>
             </div>
         </div>
-
-        <div class="forgot-link">
-            <a href="forgotPassword.html">نسيت كلمة المرور؟</a>
-        </div>
-
-        <div class="btns-form">
-            <button type="submit" class="submit-btn">تسجيل الدخول</button>
-            <button type="button" class="google-btn">اكمل باستخدام <i class="fa-brands fa-google"></i></button>
-        </div>
-
-        <div class="login-link">
-            <a href="register.html">ليس لديك حساب؟ أنشئ حساب الآن</a>
-        </div>
-
-    </form>
+    </div>
 </div>
 
 <footer>
@@ -115,6 +120,6 @@
     </div>
 </footer>
 
-<script src="js/login.js"></script>
+<script src="js/verifyCode.js"></script>
 </body>
 </html>

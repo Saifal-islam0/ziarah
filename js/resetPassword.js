@@ -74,28 +74,36 @@ document.querySelectorAll(".nav a").forEach(link => {
     });
 });
 
-const toggleLoginPassword = document.getElementById("toggleLoginPassword");
-const loginPasswordInput = document.getElementById("loginPassword");
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("password");
 
-toggleLoginPassword.addEventListener("click", function () {
-    if (loginPasswordInput.type === "password") {
-        loginPasswordInput.type = "text";
+togglePassword.addEventListener("click", function () {
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
         this.classList.remove("fa-eye");
         this.classList.add("fa-eye-slash");
     } else {
-        loginPasswordInput.type = "password";
+        passwordInput.type = "password";
         this.classList.remove("fa-eye-slash");
         this.classList.add("fa-eye");
     }
+
 });
 
-document.getElementById("loginForm").addEventListener("submit", function (e) {
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = loginPasswordInput.value.trim();
+const toggleConfromPassword = document.getElementById("toggleConfromPassword");
+const passwordConfromInput = document.getElementById("confromPassword");
 
-    if (!email || !password) {
-        e.preventDefault();
-        alert("يرجى تعبئة جميع الحقول المطلوبة.");
-        return;
+toggleConfromPassword.addEventListener("click", function () {
+
+    if (passwordConfromInput.type === "password") {
+        passwordConfromInput.type = "text";
+        this.classList.remove("fa-eye");
+        this.classList.add("fa-eye-slash");
+    } else {
+        passwordConfromInput.type = "password";
+        this.classList.remove("fa-eye-slash");
+        this.classList.add("fa-eye");
     }
+
 });

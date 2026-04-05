@@ -46,6 +46,20 @@
         </div>
 
         <nav class="nav">
+            <div class="lang-theme">
+                <div class="nav-theme" onclick="toggleTheme()" >
+                    <i class="fa-solid fa-moon" id="navThemeIcon"></i>
+                    <span>تغيير الوضع</span>
+                </div>
+
+                <div class="nav-lang" >
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <select onchange="changeLang(this.value)">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
             <a href="index.html">الرئيسية</a>
             <div class="list-services">
                 <a href="">الخدمات   <i class="fa-solid fas fa-angle-down"></i></a>
@@ -66,8 +80,6 @@
     </header>
 
    <div class="register-box">
-
-
             <div class="info">
                 <div class="point">
                     <h3>التسجيل كمستخدم</h3>

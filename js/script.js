@@ -64,3 +64,11 @@ function changeLang(lang) {
 document.querySelector('.lang select').addEventListener('change', function () {
     changeLang(this.value);
 });
+
+function openEmergency(){
+document.getElementById("emergencyModal").style.display="flex";
+}
+
+function closeEmergency(){
+document.getElementById("emergencyModal").style.display="none";
+}

@@ -15,7 +15,36 @@ if (sessionStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
     document.querySelector(".theme-toggle i").classList.replace("fa-moon", "fa-sun");
 }
+function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
 
+    const icon = document.querySelector(".theme-toggle i");
+    if (document.body.classList.contains("dark-mode")) {
+        icon.classList.replace("fa-moon", "fa-sun");
+        sessionStorage.setItem("theme", "dark");  
+    } else {
+        icon.classList.replace("fa-sun", "fa-moon");
+        sessionStorage.setItem("theme", "light"); 
+    }
+}
+if (sessionStorage.getItem("theme") === "dark") {  
+    document.body.classList.add("dark-mode");
+    document.querySelector(".theme-toggle i").classList.replace("fa-moon", "fa-sun");
+}
+function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+
+    const icons = document.querySelectorAll(".theme-toggle i, .nav-theme i");
+    icons.forEach(icon => {
+        if (document.body.classList.contains("dark-mode")) {
+            icon.classList.replace("fa-moon", "fa-sun");
+        } else {
+            icon.classList.replace("fa-sun", "fa-moon");
+        }
+    });
+
+    sessionStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+}
 document.querySelector('.lang select').addEventListener('change', function () {
     const lang = this.value;
     if (lang === 'en') {
