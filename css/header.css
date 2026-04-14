@@ -56,6 +56,8 @@
     display: flex;
     justify-content: center;
     margin: 0 20px;
+    position: relative;
+
 }
 
 .search input {
@@ -70,27 +72,241 @@
 
 .search input:focus {
     border-color: #127bdd;
+    background: #fff;
     width: 500px;
     box-shadow: 0 0 3px rgba(4, 167, 255, 0.3);
 }
+.search-results-dropdown {
+    display: none;
+    position: absolute;
+    top: 48px;
+    width: 100%;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(18,140,207,0.15);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.search-results-dropdown.active {
+    display: block;
+}
+
+.search-results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+
+}
+
+.search-results-header span {
+    font-size: 13px;
+}
+
+.search-results-header strong {
+    font-weight: 700;
+}
+
+.search-close-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: #128CCF;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: 0.3s;
+    flex-shrink: 0;
+}
+
+.search-close-btn:hover {
+    background: rgba(217, 218, 255, 0.589);
+}
+
+.search-results-list {
+    max-height: 340px;
+    overflow-y: auto;
+    padding: 6px 0;
+}
+
+.search-results-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.search-results-list::-webkit-scrollbar-track {
+    background: #f5f7fb;
+}
+
+.search-results-list::-webkit-scrollbar-thumb {
+    background: #128CCF;
+    border-radius: 4px;
+    opacity: 0.5;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+    border-bottom: 1px solid #f0f8ff;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: #f0f8ff;
+}
+
+.result-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #128CCF;
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+
+.result-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.result-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.result-meta {
+    font-size: 11px;
+    color: #999;
+    margin: 0;
+}
+
+.result-badge {
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 28px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.result-badge.doctor {
+    background: #e8f4fd;
+    color: #128CCF;
+}
+
+.result-badge.nurse {
+    background: #e8fdf0;
+    color: #1a9e5f;
+}
+
+.result-badge.service {
+    background: #fff4e8;
+    color: #e07c1a;
+}
+
+.search-loading {
+    display: none;
+    padding: 28px;
+    text-align: center;
+}
+
+.search-loading.active {
+    display: block;
+}
+
+.search-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid #e8f4fd;
+    border-top-color: #128CCF;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.search-loading p {
+    font-size: 13px;
+    color: #aaa;
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+}
+
+.search-empty {
+    display: none;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.search-empty.active {
+    display: block;
+}
+
+.search-empty i {
+    font-size: 32px;
+    color: #ccc;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.search-empty p {
+    font-size: 13px;
+    color: #aaa;
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+}
+
+.highlight {
+    color: #128CCF;
+    font-weight: 700;
+    background: #e8f4fd;
+    border-radius: 3px;
+    padding: 0 2px;
+}
+
 
 .theme-toggle {
     margin: 0 15px;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    background: #84ccf3;
+    background: #e8f4fd;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: 0.3s;
     font-size: 18px;
-    color: #0d3b66;
+    color: #0f76b3;
 }
 
 .theme-toggle:hover {
-    background: #128CCF;
+    background: #128CCF; 
     color: #fff;
 }
 .lang {
@@ -160,6 +376,9 @@
 .nav a:hover {
     color: #ffd166;
 }
+.nav-active {
+    color: #ffd166 !important;
+}
 .list-services {
     display: inline;
     position: relative;
@@ -170,7 +389,7 @@
     position: absolute;
     top: 30px;
     right: 0px;    
-    z-index: 3;  
+    z-index: 5;  
     background: #128CCF;
     list-style :none;
     padding-top: 10px;
@@ -277,6 +496,12 @@
 
     .search input:focus {
         width: 100%;
+    }
+
+    .search-results-dropdown {
+        width: calc(100vw - 30px);
+        right: 50%;
+        transform: translateX(50%);
     }
 
     .lang select {
@@ -415,6 +640,19 @@
         font-size: 14px;
         padding: 5px 14px;
     }
+    .search-results-dropdown {
+        width: calc(100vw - 20px);
+    }
+
+    .result-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+
+    .result-name {
+        font-size: 13px;
+    }
 }
 
 
@@ -441,6 +679,71 @@ body.dark-mode .search input {
     background: #0f3460;
     border-color: #1a4a8a;
     color: #e0e0e0;
+}
+body.dark-mode .search-results-dropdown {
+    background: #16213e;
+    border-top-color: #84ccf3;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .search-results-header {
+    background: #0f3460;
+}
+
+body.dark-mode .search-results-header span {
+    color: #e0e0e0;
+}
+
+body.dark-mode .search-result-item {
+    border-color: #1a2a4a;
+}
+
+body.dark-mode .search-result-item:hover {
+    background: #0f3460;
+}
+
+body.dark-mode .result-name {
+    color: #e0e0e0;
+}
+
+body.dark-mode .result-icon {
+    background: #0f3460;
+    border-color: #1a4a8a;
+    color: #84ccf3;
+}
+
+body.dark-mode .result-badge.doctor {
+    background: #0f3460;
+    color: #84ccf3;
+}
+
+body.dark-mode .result-badge.nurse {
+    background: #0f3d28;
+    color: #4ecb87;
+}
+
+body.dark-mode .result-badge.service {
+    background: #3d2a0f;
+    color: #f0a050;
+}
+
+body.dark-mode .search-results-footer {
+    background: #0f3460;
+    border-color: #1a4a8a;
+    color: #84ccf3;
+}
+
+body.dark-mode .search-results-footer:hover {
+    background: #1a4a8a;
+}
+
+body.dark-mode .search-loading p,
+body.dark-mode .search-empty p {
+    color: #888;
+}
+
+body.dark-mode .search-empty i {
+    color: #555;
 }
 body.dark-mode .lang {
     border-color: #84ccf3;

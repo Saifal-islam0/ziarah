@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+    <div class="middle-header">
+        <div class="logo">
+            <a href="index.html"><img src="assets/logo.png" alt="شعار زيارة"></a>
+        </div>
+        <div class="search" style="flex:1; display:flex; justify-content:center; margin:0 20px;">
+            <input type="text" placeholder="ابحث عن طبيب أو خدمة..." autocomplete="off">
+        </div>
+        <div class="theme-toggle" onclick="toggleTheme()">
+            <i class="fa-solid fa-moon"></i>
+        </div>
+        <div class="lang">
+            <i class="fa-solid fa-earth-americas"></i>
+            <select>
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <nav class="nav">
+            <div class="lang-theme">
+                <div class="nav-theme" onclick="toggleTheme()">
+                    <i class="fa-solid fa-moon" id="navThemeIcon"></i>
+                    <span>تغيير الوضع</span>
+                </div>
+                <div class="nav-lang">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <select><option value="ar">العربية</option><option value="en">English</option></select>
+                </div>
+            </div>
+            <a href="index.html">الرئيسية</a>
+            <div class="list-services">
+                <a href="">الخدمات <i class="fa-solid fa-angle-down"></i></a>
+                <ul class="items-services">
+                    <li>طلب طبيب</li>
+                    <li>طلب تمريض</li>
+                    <li>أخذ عينة</li>
+                    <li>علاج طبيعي</li>
+                </ul>
+            </div>
+            <a href="requestVisit.html">طلب زيارة منزلية</a>
+            <a href="insurance.html">تأمين هيئة التدريس</a>
+            <a href="medicalTips.html">نصائح طبية</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html" class="nav-active">تواصل معنا</a>
+        </nav>
+        <div class="buttons">
+            <a href="register.html"><button class="join-btn">إنشاء حساب</button></a>
+            <a href="login.html"><button class="login-btn">تسجيل الدخول</button></a>
+        </div>
+    </div>
+</header>
+
+<main class="contact-main">
+
+    <div class="contact-form-col">
+        <div class="section-header">
+            <div>
+                <h2>أرسل رسالتك</h2>
+                <div class="section-line"></div>
+                <p class="section-sub">سنرد عليك خلال ٢٤ ساعة</p>
+            </div>
+        </div>
+
+        <form class="contact-form" id="contactForm" onsubmit="sendMessage(event)">
+
+            <div class="form-row-double">
+                <div class="input-group">
+                    <label>الاسم الأول</label>
+                    <input type="text" id="firstName" placeholder="" required>
+                </div>
+                <div class="input-group">
+                    <label>الاسم الأخير</label>
+                    <input type="text" id="lastName" placeholder="" required>
+                </div>
+            </div>
+
+            <div class="form-row-double">
+                <div class="input-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" id="phone" placeholder="01xxxxxxxxx" required>
+                </div>
+                <div class="input-group">
+                    <label> البريد الإلكتروني</label>
+                    <input type="email" id="email" placeholder="info@gmail.com" required>
+                </div>
+            </div>
+
+
+            <div class="input-group">
+                <label>الرسالة</label>
+                <textarea id="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+            </div>
+
+            <div class="input-group">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="acceptTerms" required>
+                    <span class="checkmark"></span>
+                    أوافق على <a href="#">سياسة الخصوصية</a> وأن يتم التواصل معي بخصوص رسالتي
+                </label>
+            </div>
+
+            <button type="submit" class="send-btn" id="sendBtn">
+                <i class="fa-solid fa-paper-plane"></i>
+                إرسال الرسالة
+            </button>
+
+        </form>
+
+        <div class="form-success" id="formSuccess">
+            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <h3>تم إرسال رسالتك بنجاح!</h3>
+            <p>شكراً لتواصلك معنا. سيقوم فريقنا بالرد عليك خلال ٢٤ ساعة على البريد الإلكتروني أو رقم الهاتف الذي أدخلته.</p>
+            <button class="send-btn" onclick="resetForm()" style="margin-top:10px;">
+                <i class="fa-solid fa-rotate-right"></i> إرسال رسالة أخرى
+            </button>
+        </div>
+
+    </div>
+
+    <aside class="contact-info-col">
+
+        <div class="social-section">
+            <h3>تابعنا على</h3>
+            <div class="social-links">
+                <a href="#" class="social-btn facebook" title="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-btn instagram" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-btn twitter" title="x"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="social-btn linkedin" title="لينكدإن"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h3>أسئلة شائعة</h3>
+            <div class="faq-list" id="faqList">
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>كيف أطلب زيارة منزلية؟</span>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>يمكنك طلب زيارة منزلية من خلال الضغط على "طلب زيارة منزلية" في القائمة الرئيسية، ثم اتباع الخطوات البسيطة لاختيار نوع الخدمة وتحديد الموعد.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>كم يستغرق وصول مقدم الخدمة؟</span>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>يصل مقدم الخدمة في الموعد المحدد الذي تختاره أثناء الحجز. في حالات الطوارئ يمكن تقليص وقت الانتظار بحسب التوفر.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </aside>
+
+</main>
+
+<footer>
+    <div class="footer-small">
+        <div class="footer-logo"><img src="assets/logo.png" alt="زيارة"></div>
+        <p>حقوق النشر والطبع محفوظه زيارة | &copy; 2026</p>
+    </div>
+</footer>
+
+<script src="js/header.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>

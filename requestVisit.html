@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب زيارة منزلية - زيارة</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/requestVisit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+    <div class="middle-header">
+        <div class="logo">
+            <a href="index.html"><img src="assets/logo.png" alt="شعار زيارة"></a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="ابحث عن طبيب أو خدمة..." id="searchInput" autocomplete="off">
+            <div class="search-results-dropdown" id="searchDropdown">
+                <div class="search-results-header">
+                    <span><strong id="resultsCount"></strong>&nbsp;لـ "<span id="searchQuery"></span>"</span>
+                    <button class="search-close-btn" onclick="closeSearchDropdown()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="search-loading" id="searchLoading"><div class="search-spinner"></div><p>جاري البحث...</p></div>
+                <div class="search-empty" id="searchEmpty"><i class="fa-solid fa-magnifying-glass"></i><p>لا توجد نتائج مطابقة</p></div>
+                <div class="search-results-list" id="searchResultsList"></div>
+            </div>
+        </div>
+        <div class="theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></div>
+        <div class="lang">
+            <i class="fa-solid fa-earth-americas"></i>
+            <select onchange="changeLang(this.value)">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <nav class="nav">
+            <div class="lang-theme">
+                <div class="nav-theme" onclick="toggleTheme()">
+                    <i class="fa-solid fa-moon" id="navThemeIcon"></i>
+                    <span>تغيير الوضع</span>
+                </div>
+                <div class="nav-lang">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <select onchange="changeLang(this.value)">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+            <a href="index.html">الرئيسية</a>
+            <div class="list-services">
+                <a href="">الخدمات <i class="fa-solid fa-angle-down"></i></a>
+                <ul class="items-services">
+                    <li>طلب طبيب</li>
+                    <li>طلب تمريض</li>
+                    <li>أخذ عينة</li>
+                    <li>علاج طبيعي</li>
+                </ul>
+            </div>
+            <a href="#" class="nav-active">طلب زيارة منزلية</a>
+            <a href="insurance.html">تأمين اعضاء هيئة التدريس</a>
+            <a href="mediCaltips.html">نصائح طبية</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+        </nav>
+        <div class="buttons">
+            <a href="register.html"><button class="join-btn">إنشاء حساب</button></a>
+            <a href="login.html"><button class="login-btn">تسجيل الدخول</button></a>
+        </div>
+    </div>
+</header>
+
+<section class="visit-hero">
+    <div class="hero-illustration">
+        <img src="assets/image/hero-req-visit.png" alt="طلب زيارة">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>طلب زيارة منزلية</h1>
+        <p>احصل على الرعاية الصحية في منزلك على يد نخبة من الأطباء والممرضين المتخصصين</p>
+
+    </div>
+</section>
+
+<main class="visit-main">
+
+    <div class="filter-section">
+        <div class="visit-type-tabs">
+            <button class="visit-type-btn active">
+                <i class="fa-solid fa-user-doctor"></i>
+                <span>طبيب</span>
+            </button>
+            <button class="visit-type-btn">
+                <i class="fa-solid fa-user-nurse"></i>
+                <span>تمريض</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="filter-section" id="filterArea">
+        <div class="filter-grid">
+            <div class="filter-item">
+                <label>الاسم</label>
+                <input type="text" id="filterName" placeholder="ابحث بالاسم...">
+            </div>
+            <div class="filter-item">
+                <label> العنوان</label>
+                <input type="text" id="filterAddress" placeholder="المنطقة أو الحي...">
+            </div>
+            <div class="filter-item" id="specFilter">
+                <label> التخصص</label>
+                <div class="custom-select-wrapper">
+                    <select id="filterSpec" class="custom-select">
+                        <option value="">كل التخصصات</option>
+                        <option>باطنة</option>
+                        <option>مخ وأعصاب</option>
+                        <option>عظام</option>
+                        <option>أطفال وحديثي الولادة</option>
+                        <option>نساء وتوليد</option>
+                        <option>جلدية</option>
+                        <option>عيون</option>
+                        <option>أنف وأذن وحنجرة</option>
+                        <option>أمراض الدم والأورام</option>
+                        <option>طب نفسي</option>
+                        <option>علاج طبيعي وتأهيل</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-item">
+                <label>التقييم</label>
+                <div class="custom-select-wrapper">
+                    <select id="filterRating" class="custom-select">
+                        <option value="">كل التقييمات</option>
+                        <option value="5">5 نجوم فقط</option>
+                        <option value="4">4 نجوم فأكثر</option>
+                        <option value="3">3 نجوم فأكثر</option>
+                        <option value="2">2 نجوم فأكثر</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-item">
+                <label>حدد اعلي السعر</label>
+                <div class="price-range-wrap">
+                    <input type="range" id="filterPrice" min="100" max="1000" step="50" value="1000" oninput="updatePriceLabel(); applyFilters()">
+                    <span id="priceLabel">حتى 1000 جنيه</span>
+                </div>
+            </div>
+            <div class="filter-item filter-reset-wrap">
+                <button class="reset-btn">
+                    <i class="fa-solid fa-rotate-right"></i> 
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-meta">
+        <div class="results-count">
+            عرض <span id="visibleCount">12</span> من <span id="totalCount">48</span> نتيجة
+        </div>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid">
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-spec">
+                    عظام
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+        <i class="fa-solid fa-user-doctor"></i>
+        <h3>لا توجد نتائج</h3>
+        <p>جرب تغيير مدخلاتك</p>
+    </div>
+    <div class="pagination-wrap" id="paginationWrap">
+        <button class="page-btn arrow disabled">
+            <i class="fa-solid fas fa-chevron-right"></i>
+        </button>    
+        <button class="page-btn active"><span>1</span></button>
+        <button class="page-btn"><span>2</span></button>    
+        <button class="page-btn"><span>3</span></button>    
+
+        <button class="page-btn">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+    </div>
+
+</main>
+
+<div class="overlay" id="bookingOverlay" onclick="closeBookingIfOutside(event)">
+    <div class="booking-modal">
+        <div class="booking-modal-header">
+            <div class="booking-modal-title">
+                طلب زيارة
+            </div>
+            <button class="booking-close-btn" onclick="closeBookingModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <div class="booking-doctor-info" id="bookingDoctorInfo">
+            <div class="booking-doc-img">
+                <img src="assets/image/mohamed.png" alt="">
+            </div>
+            <div>
+                <div class="booking-doc-name">محمد محمود</div>
+                <div class="booking-doc-spec">عظام</div>
+                <div class="booking-doc-price">سعر الكشف 500 جنيه</div>
+            </div>
+        </div>
+
+        <form id="bookingForm" onsubmit="submitBooking(event)">
+            <div class="double-input">
+                <div class="input-group">
+                    <label>الاسم بالكامل</label>
+                    <input type="text" name="fullName" placeholder="" required>
+                </div>
+                <div class="input-group">
+                    <label>رقم الهاتف للتواصل</label>
+                    <input type="text" name="phone" placeholder="01xxxxxxxxx" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>العنوان بالتفصيل</label>
+                <input type="text" name="address" placeholder="المحافظة - الحي - الشارع - رقم المبنى..." required>
+            </div>
+
+            <div class="double-input">
+                <div class="input-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" name="email" placeholder="info@gmail.com">
+                </div>
+                <div class="input-group">
+                    <label>اختيار الموعد</label>
+                    <input type="datetime-local" name="datetime" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>الحالة المرضية</label>
+                <input type="text" name="condition" placeholder="اذكر الأعراض أو الحالة التي تحتاج رعاية..." required>
+            </div>
+
+            <div class="input-group file-upload">
+                <label for="nationalId" id="nationalIdLabel">
+                     رفع صورة بطاقة الرقم القومي
+                </label>
+                <input type="file" id="nationalId" name="nationalId" accept="image/*" required>
+            </div>
+
+            <div class="input-group">
+                <label>ملاحظات إضافية <span style="color:#aaa;font-weight:400">(اختياري)</span></label>
+                <textarea name="notes" placeholder="أي معلومات إضافية تساعد الطبيب..."></textarea>
+            </div>
+
+            <div class="booking-form-footer">
+                <button type="submit" class="submit-btn">
+                    طلب الآن
+                </button>
+                <a href="register.html" class="register-link">
+                     إنشاء حساب | حتي لا تحتاج لإدخال البيانات في المرة القادمة
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="overlay " id="successOverlay">
+    <div class="success-modal">
+        <div class="success-icon">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h2>تمت العملية بنجاح</h2>
+        <p>انتظر تأكيد الموعد على رسائل الواتساب<br>سنرسل إليك التفاصيل قريباً</p>
+        <button class="submit-btn" onclick="closeSuccessModal()" style="margin-top:20px; width:auto; padding:10px 40px;">
+            حسناً
+        </button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-small">
+        <div class="footer-logo"><img src="assets/logo.png" alt="زيارة"></div>
+        <p>حقوق النشر والطبع محفوظه زيارة | &copy; 2026</p>
+    </div>
+</footer>
+
+<script src="js/requestVisit.js"></script>
+<script src="js/header.js"></script>
+</body>
+</html>

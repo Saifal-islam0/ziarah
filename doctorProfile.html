@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة معلومات الطبيب</title>
+    <link rel="stylesheet" href="css/doctorProfile.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <div class="middle-header">
+        <div class="logo">
+            <a href="index.html"><img src="assets/logo.png" alt="شعار زيارة"></a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="ابحث عن طبيب أو خدمة..." id="searchInput" autocomplete="off">
+            <div class="search-results-dropdown" id="searchDropdown">
+                <div class="search-results-header">
+                    <span><strong id="resultsCount"></strong>&nbsp;لـ "<span id="searchQuery"></span>"</span>
+                    <button class="search-close-btn" onclick="closeSearchDropdown()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="search-loading" id="searchLoading"><div class="search-spinner"></div><p>جاري البحث...</p></div>
+                <div class="search-empty" id="searchEmpty"><i class="fa-solid fa-magnifying-glass"></i><p>لا توجد نتائج مطابقة</p></div>
+                <div class="search-results-list" id="searchResultsList"></div>
+            </div>
+        </div>
+        <div class="theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></div>
+        <div class="lang">
+            <i class="fa-solid fa-earth-americas"></i>
+            <select onchange="changeLang(this.value)">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <nav class="nav">
+            <div class="lang-theme">
+                <div class="nav-theme" onclick="toggleTheme()">
+                    <i class="fa-solid fa-moon" id="navThemeIcon"></i>
+                    <span>تغيير الوضع</span>
+                </div>
+                <div class="nav-lang">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <select onchange="changeLang(this.value)">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+            <a href="index.html">الرئيسية</a>
+            <div class="list-services">
+                <a href="requestVisit.html">الخدمات <i class="fa-solid fa-angle-down"></i></a>
+                <ul class="items-services">
+                    <li>طلب طبيب</li>
+                    <li>طلب تمريض</li>
+                    <li>أخذ عينة</li>
+                    <li>علاج طبيعي</li>
+                </ul>
+            </div>
+            <a href="requestVisit.html">طلب زيارة منزلية</a>
+            <a href="insurance.html">تأمين اعضاء هيئة التدريس</a>
+            <a href="mediCaltips.html">نصائح طبية</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+        </nav>
+        <div class="buttons">
+            <a href="register.html"><button class="join-btn">إنشاء حساب</button></a>
+            <a href="login.html"><button class="login-btn">تسجيل الدخول</button></a>
+        </div>
+    </div>
+</header>
+
+<section class="doctor-section">
+    <div class="top-banner"></div>
+    <div class="doctor-card">
+
+        <div class="right-side">
+            <div class="doctor-header">
+                <div class="doctor-image">
+                    <img src="assets/image/mohamed.png" alt="د. محمود أحمد">
+                </div>
+                <div class="doctor-info">
+                    <h2>د. محمود أحمد</h2>
+                    <span class="specialty">عظام</span>
+                    <p>
+                        لوريم ايبسوم دولار سيت أميت، كونسيكتيتور أدايبا يسكينج أليايت، سيت دو أيوسمود تيمبور
+                        أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا. يوت انيم أد مينيم فينايم، كيواس نوستريد
+                        أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="left-side">
+            <div class="price-box">
+                <div class="icon"><i class="fa-solid fa-briefcase-medical"></i></div>
+                <div>
+                    <p class="label">سعر الكشف</p>
+                    <p class="price">500 جنيه</p>
+                </div>
+            </div>
+            <button class="btn primary" onclick="window.location.href='requestVisit.html'">
+                طلب الان
+            </button>
+            <a class="btn outline" href="contact.html">
+                تواصل معنا
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="doctor-stats">
+    <div class="stat-item">
+        <i class="fa-solid fa-user-group"></i>
+        <strong>+200</strong>
+        <span>مريض تمت خدمتهم</span>
+    </div>
+    <div class="stat-item">
+        <i class="fa-solid fa-calendar-check"></i>
+        <strong>+150</strong>
+        <span>زيارة منزلية</span>
+    </div>
+    <div class="stat-item">
+        <i class="fa-solid fa-star"></i>
+        <strong>4.8</strong>
+        <span>متوسط التقييم</span>
+    </div>
+    <div class="stat-item">
+        <i class="fa-solid fa-clock"></i>
+        <strong>8</strong>
+        <span>سنوات خبرة</span>
+    </div>
+</div>
+
+<div class="ratings">
+    <div class="ratings-header">
+        <h3>التقييمات</h3>
+        <span class="rate">4.8 <i class="fa-solid fa-star"></i></span>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card">
+            <div class="review-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+                <span>علي أحمد إبراهيم</span>
+                <div class="star">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star gray"></i>
+                </div>
+            </div>
+            <p>دكتور ممتاز، متعاون جداً وشرح الحالة بالتفصيل</p>
+        </div>
+        <div class="review-card">
+            <div class="review-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+                <span>محمد عبد الرحمن</span>
+                <div class="star">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+            <p>خدمة ممتازة وسريعة، وصل في الموعد المحدد تماماً</p>
+        </div>
+        <div class="review-card">
+            <div class="review-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+                <span>سارة محمود</span>
+                <div class="star">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star gray"></i>
+                </div>
+            </div>
+            <p>أنصح به بشدة، تشخيص دقيق ومعاملة محترمة</p>
+        </div>
+        <div class="review-card">
+            <div class="review-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+                <span>أحمد السيد</span>
+                <div class="star">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+            <p>تجربة رائعة، الطبيب محترف ومهتم بالمريض</p>
+        </div>
+        <div class="review-card">
+            <div class="review-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+                <span>فاطمة علي</span>
+                <div class="star">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star gray"></i>
+                    <i class="fa-solid fa-star gray"></i>
+                </div>
+            </div>
+            <p>جيد، لكن تأخر قليلاً عن الموعد المحدد</p>
+        </div>
+    </div>
+</div>
+
+<section class="rating-box-section">
+    <div class="rating-box">
+        <h3>قيم الطبيب</h3>
+        <div class="stars" id="stars">
+            <div class="stars-row">
+                <i class="fa-solid fa-star" data-value="1"></i>
+                <i class="fa-solid fa-star" data-value="2"></i>
+                <i class="fa-solid fa-star" data-value="3"></i>
+                <i class="fa-solid fa-star" data-value="4"></i>
+                <i class="fa-solid fa-star" data-value="5"></i>
+            </div>
+            <textarea id="review" placeholder="اكتب تعليقك هنا..."></textarea>
+        </div>
+        <button onclick="submitRating()">
+             نشر التقييم
+        </button>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-small">
+        <div class="footer-logo"><img src="assets/logo.png" alt="زيارة"></div>
+        <p>حقوق النشر والطبع محفوظه زيارة | &copy; 2026</p>
+    </div>
+</footer>
+
+<script src="js/doctorProfile.js"></script>
+<script src="js/header.js"></script>
+
+</body>
+</html>

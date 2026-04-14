@@ -18,7 +18,28 @@
             <a href="index.html"><img src="assets/logo.png" alt="شعار زيارة"></a>
         </div>
         <div class="search">
-            <input type="search" placeholder="ابحث عن طبيب أو خدمة...">
+            <input type="text" placeholder="ابحث عن طبيب أو خدمة..." id="searchInput" autocomplete="off">
+            <div class="search-results-dropdown" id="searchDropdown">
+                <div class="search-results-header">
+                    <span>
+                        <strong id="resultsCount"></strong>
+                        &nbsp;لـ "<span id="searchQuery"></span>"
+                    </span>
+                    <button class="search-close-btn" onclick="closeSearchDropdown()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="search-loading" id="searchLoading">
+                    <div class="search-spinner"></div>
+                    <p>جاري البحث...</p>
+                </div>
+                <div class="search-empty" id="searchEmpty">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>لا توجد نتائج مطابقة</p>
+                </div>
+                <div class="search-results-list" id="searchResultsList"></div>
+
+            </div>
         </div>
         <div class="theme-toggle" onclick="toggleTheme()">
             <i class="fa-solid fa-moon"></i>
@@ -62,9 +83,9 @@
                     <li>علاج طبيعي</li>                        
                 </ul>              
             </div>
-            <a href="#">نصائح طبية</a>
-            <a href="#we">من نحن</a>
-            <a href="#contact">تواصل معنا</a>
+            <a href="mediCaltips.html">نصائح طبية</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
         </nav>
     </div>
 </header>
@@ -116,5 +137,6 @@
 </footer>
 
 <script src="js/login.js"></script>
+<script src="js/header.js"></script>
 </body>
 </html>

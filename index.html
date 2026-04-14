@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/responsive.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"></head>
-
+</head>
 <body>
 <header class="header">
 
@@ -28,9 +27,28 @@
         <div class="logo">
             <a href="#"><img src="assets/logo.png" alt="شعار زيارة"></a>
         </div>
-
         <div class="search">
-            <input type="search" placeholder="ابحث عن طبيب أو خدمة...">
+            <input type="text" placeholder="ابحث عن طبيب أو خدمة..." id="searchInput" autocomplete="off">
+            <div class="search-results-dropdown" id="searchDropdown">
+                <div class="search-results-header">
+                    <span>
+                        <strong id="resultsCount"></strong>
+                        &nbsp;لـ "<span id="searchQuery"></span>"
+                    </span>
+                    <button class="search-close-btn" onclick="closeSearchDropdown()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="search-loading" id="searchLoading">
+                    <div class="search-spinner"></div>
+                    <p>جاري البحث...</p>
+                </div>
+                <div class="search-empty" id="searchEmpty">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>لا توجد نتائج مطابقة</p>
+                </div>
+                <div class="search-results-list" id="searchResultsList"></div>
+            </div>
         </div>
 
         <div class="theme-toggle" onclick="toggleTheme()">
@@ -70,9 +88,9 @@
                     </select>
                 </div>
             </div>
-            <a href="index.html">الرئيسية</a>
+            <a href="index.html" class="nav-active">الرئيسية</a>
             <div class="list-services">
-                <a href="">الخدمات   <i class="fa-solid fas fa-angle-down"></i></a>
+                <a href="requestVisit.html">الخدمات   <i class="fa-solid fas fa-angle-down"></i></a>
                 <ul class="items-services">
                     <li>طلب طبيب</li>
                     <li>طلب تمريض</li>
@@ -80,11 +98,11 @@
                     <li>علاج طبيعي</li>                        
                 </ul>              
             </div>
-            <a href="#">طلب زيارة منزلية</a>
-            <a href="#">تأمين اعضاء هيئة التدريس</a>
-            <a href="#">نصائح طبية</a>
-            <a href="#we">من نحن</a>
-            <a href="#contact">تواصل معنا</a>
+            <a href="requestVisit.html">طلب زيارة منزلية</a>
+            <a href="insurance.html">تأمين اعضاء هيئة التدريس</a>
+            <a href="mediCaltips.html">نصائح طبية</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
 
         </nav>
 
@@ -110,18 +128,18 @@
         </div>
         <div class="text-center">
             <span>رعايتك الصحية تبدأ من هنا</span>
-            <p>نقدم لك خدمات طبية متكاملة بأعلى معايير الجودة، حيث نحرص على توفير رعاية صحية آمنة وسريعة على يد نخبة من الأطباء
+            <p >نقدم لك خدمات طبية متكاملة بأعلى معايير الجودة، حيث نحرص على توفير رعاية صحية آمنة وسريعة على يد نخبة من الأطباء
                 المتخصصين وباستخدام أحدث التقنيات الطبية
             </p>
 
             <div class="btns-main">
-                <button class="book-now">
-                    اطلب زيارة الان <i class="fa-solid fa-arrow-left"></i>
-                </button>
-
-                <button class="insurance">
+                <a class="book-now" href="requestVisit.html">
+                    طلب زيارة الان <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                
+                <a class="insurance"  href="insurance.html">
                     لدي تأمين <i class="fa-solid fa-arrow-left"></i>
-                </button>
+                </a>
             </div>
             <div class="btn-emerg">
                 <button class="emerg" onclick="openEmergency()">
@@ -166,7 +184,6 @@
                 <h2>كيف تطلب زيارة منزلية ؟</h2>
                 <div class="line line-w"></div>
 
-
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-text">
@@ -208,31 +225,12 @@
             </div>
         </div>
     </section>
-    <div class="emergency-overlay" id="emergencyModal">
-        <div class="emergency-modal">
-            <span class="close" onclick="closeEmergency()">
-            <i class="fa-regular fa-circle-xmark"></i>
-            </span>
-            
-            <div class="emergency-icon">
-            <i class="fa-solid fa-phone"></i>
-            </div>
-            
-            <h2>رقم الطوارئ</h2>
-            
-            <p class="emergency-number">123</p>
-            
-            <a href="tel:123" class="call-btn">
-                اتصل الآن
-            </a>
-        </div>
     </div>
 
     
     <section class="services">
         <div class="services-container">
             <h2 class="section-title">الخدمات</h2>
-
             <div class="services-cards">    
                 <div class="card-sc">
                     <div class="icon"><i class="fa-solid fa-user-doctor"></i></div>
@@ -252,12 +250,10 @@
                 </div>
 
             </div>
-            <a href="#">
-                <button class="start-btn">
+                <a class="start-btn" href="requestVisit.html">
                     أبدأ الان
                     <i class="fa-solid fa-chevron-left"></i>
-                </button>
-             </a>
+                </a>
         </div>  
     </section> 
     <section class="provide">
@@ -270,7 +266,7 @@
                 واحصل على عدد أكبر من المرضى وزيادة دخلك
             </p>
 
-            <a href="#">
+            <a href="register.html">
                 <button class="joinnow-btn">
                     انضم الآن
                     <i class="fa-solid fa-arrow-left"></i>
@@ -330,6 +326,6 @@
         </footer>
     </section>
     <script src="js/script.js"></script>
-    <script src="js/responsive.js"></script>
+    <script src="js/header.js"></script>
 </body>
 </html>

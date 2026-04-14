@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الطبيب</title>
+    <link rel="stylesheet" href="css/dashbordDoctor.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+    <div class="middle-header">
+
+        <div class="logo">
+            <a href="#"><img src="assets/logo.png" alt="شعار زيارة"></a>
+        </div>
+
+        <div class="group-btns"> 
+            <div class="notifications" onclick="" >
+                <i class="fa-solid fa-bell"></i>
+            </div>       
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+
+            <div class="lang">                
+                <i class="fa-solid fa-earth-americas"></i>
+                <select onchange=""> 
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="nav-bar">
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav class="nav">
+                <div class="nav-notifications" onclick="" >
+                    <i class="fa-solid fa-bell"></i>
+                    <span>الاشعارات</span>
+                </div>          
+                <div class="nav-theme" onclick="toggleTheme()" >
+                    <i class="fa-solid fa-moon" id="navThemeIcon"></i>
+                    <span>تغيير الوضع</span>
+                </div>
+
+                <div class="nav-lang" >
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <select onchange="changeLang(this.value)">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>                
+        </nav>
+    </div>
+
+</header>
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="profile">
+            <a href="ProfileDoctor.html">
+            <div class="image-profile">
+                <img src="assets/image/sara.png" alt="صورة الملف">
+            </div>
+            <div class="name-profile">د.سارة احمد </div>
+            <span>تعديل</span>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section-title">القائمة الرئيسية</div>
+
+            <a class="nav-item active" onclick="showSection('dashboard')">
+                <i class="fa-solid fa-gauge"></i>
+                <span>لوحة التحكم</span>
+            </a>
+            <a class="nav-item" onclick="showSection('new-visits')">
+                <i class="fa-solid fa-bell"></i>
+                <span>الزيارات الجديدة</span>
+                <span class="badge">4</span>
+            </a>
+            <a class="nav-item" onclick="showSection('history')">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>سجل الزيارات</span>
+            </a>
+        </nav>
+        <button onclick=""><span>تسجيل الخروج</span><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+
+    </aside>
+
+    <main>
+        <div class="content">
+            <div id="section-dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fa-solid fa-calendar-check"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">زيارات هذا الشهر</div>
+                            <div class="stat-change up">12% عن الشهر الماضي</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value">18</div>
+                            <div class="stat-label">زيارات مكتملة</div>
+                            <div class="stat-change up">8% عن الشهر الماضي</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fa-solid fa-hourglass-half"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">قيد الانتظار</div>
+                            <div class="stat-change down">طلبات جديدة</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fa-solid fa-star"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value">4.8</div>
+                            <div class="stat-label">متوسط التقييم</div>
+                            <div class="stat-change up">ممتاز</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="schedule-calendar-row">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">مواعيد اليوم</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">10:00</div>
+                            <div class="schedule-info">
+                                <div class="schedule-name">محمد علي </div>
+                                <div class="schedule-type">كشف</div>
+                                <div class="schedule-location">القاهرة</div>
+                            </div>
+                            <span class="status-badge confirmed">مؤكدة</span>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">11:00</div>
+                            <div class="schedule-info">
+                                <div class="schedule-name">خالد رضا</div>
+                                <div class="schedule-type">كشف</div>
+                                <div class="schedule-location">مصر الجديدة</div>
+                            </div>
+                            <span class="status-badge confirmed">مؤكدة</span>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">12:00</div>
+                            <div class="schedule-info">
+                                <div class="schedule-name">مازن محمد</div>
+                                <div class="schedule-type">متابعة</div>
+                                <div class="schedule-location">اكتوبر</div>
+                            </div>
+                            <span class="status-badge confirmed">مؤكدة</span>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">17:00</div>
+                            <div class="schedule-info">
+                                <div class="schedule-name">محمد احمد</div>
+                                <div class="schedule-type">كشف</div>
+                                <div class="schedule-location">المعادي</div>
+                            </div>
+                            <span class="status-badge confirmed">مؤكدة</span>
+                        </div>
+                    </div>
+
+                    </div>
+
+                    <div class="card calendar-card">
+                        <div class="card-header calendar-header">
+                            <div class="card-title">التقويم</div>
+                            <div class="cal-nav">
+                                <button class="cal-btn" onclick="prevMonth()"><i class="fa-solid fa-chevron-right"></i></button>
+                                <span id="calMonthLabel"></span>
+                                <button class="cal-btn" onclick="nextMonth()"><i class="fa-solid fa-chevron-left"></i></button>
+                            </div>
+                        </div>
+                        <div class="cal-week-days">
+                            <span>أحد</span><span>اثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span><span>جمعة</span><span>سبت</span>
+                        </div>
+                        <div class="cal-grid" id="calGrid"></div>
+
+                        <div class="cal-day-detail" id="calDayDetail" style="display:none;">
+                            <div class="cal-detail-header">
+                                <span id="calDetailTitle"></span>
+                                <button class="cal-detail-close" onclick="closeDayDetail()"><i class="fa-solid fa-xmark"></i></button>
+                            </div>
+                            <div class="cal-detail-list" id="calDetailList">
+                                <div class="cal-visit-item">
+                                    <div class="cal-visit-time">10:00</div>
+                                    <div class="cal-visit-info">
+                                        <div class="cal-visit-name">محمد علي</div>
+                                        <div class="cal-visit-meta"><span>كشف</span> - <span>القاهرة</span></div>
+                                    </div>
+                                    <span class="status-badge confirmed">مؤكدة</span>                                    
+                                </div>
+                                <div class="cal-visit-item">
+                                    <div class="cal-visit-time">11:00</div>
+                                    <div class="cal-visit-info">
+                                        <div class="cal-visit-name">خالد رضا</div>
+                                        <div class="cal-visit-meta"><span>كشف</span> - <span>مصر الجديدة</span></div>
+                                    </div>
+                                    <span class="status-badge confirmed">مؤكدة</span>                                    
+                                </div>
+                                <div class="cal-visit-item">
+                                    <div class="cal-visit-time">12:00</div>
+                                    <div class="cal-visit-info">
+                                        <div class="cal-visit-name">مازن محمد</div>
+                                        <div class="cal-visit-meta"><span>متابعة</span> - <span>اكتوبر</span></div>
+                                    </div>
+                                    <span class="status-badge confirmed">مؤكدة</span>                                    
+                                </div>
+                                <div class="cal-visit-item">
+                                    <div class="cal-visit-time">10:00</div>
+                                    <div class="cal-visit-info">
+                                        <div class="cal-visit-name">محمد احمد</div>
+                                        <div class="cal-visit-meta"><span>كشف</span> - <span>المعادي</span></div>
+                                    </div>
+                                    <span class="status-badge confirmed">مؤكدة</span>                                    
+                                </div>
+
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+            </div>
+
+
+            <div id="section-new-visits" style="display:none;">
+                <div class="card">
+                <div class="section-heading">الزيارات الجديدة</div>
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <input type="text" placeholder="بحث عن مريض..." oninput="filterTable(this,'new-visits-tbody')">
+                        </div>
+                        <select class="filter-select">
+                            <option>كل الحالات</option>
+                            <option>قيد الانتظار</option>
+                            <option>مؤكدة</option>
+                        </select>
+                    </div>
+                    <div style="overflow-x:auto;">
+                    <table class="visits-table">
+                        <thead>
+                            <tr>
+                                <th>اسم المريض</th>
+                                <th>عنوان المريض</th>
+                                <th>موعد الزيارة</th>
+                                <th>نوع الزيارة</th>
+                                <th>الحالة</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="new-visits-tbody">
+                            <tr>
+                                <td>حسين التوني</td>
+                                <td>القاهرة</td>
+                                <td>2026-04-10 11:30</td>
+                                <td>متابعة</td>
+                                <td><span class="status-badge pending">قيد الانتظار</span></td>
+                                <td>
+                                    <button class="action-btn accept" onclick="acceptVisit(this)">قبول</button>
+                                    <button class="action-btn reject" onclick="rejectVisit(this)">رفض</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>خالد مختار</td>
+                                <td>مصر الجديدة</td>
+                                <td>2026-04-10 11:30</td>
+                                <td>كشف</td>
+                                <td><span class="status-badge pending">قيد الانتظار</span></td>
+                                <td>
+                                    <button class="action-btn accept" onclick="acceptVisit(this)">قبول</button>
+                                    <button class="action-btn reject" onclick="rejectVisit(this)">رفض</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>خالد محمود</td>
+                                <td>الشيخ زايد</td>
+                                <td>2026-04-01 11:30</td>
+                                <td>كشف</td>
+                                <td><span class="status-badge pending">قيد الانتظار</span></td>
+                                <td>
+                                    <button class="action-btn accept" onclick="acceptVisit(this)">قبول</button>
+                                    <button class="action-btn reject" onclick="rejectVisit(this)">رفض</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>محمواحمد</td>
+                                <td>الدقي</td>
+                                <td>2026-01-10 08:30</td>
+                                <td>كشف</td>
+                                <td><span class="status-badge pending">قيد الانتظار</span></td>
+                                <td>
+                                    <div class="action">
+                                        <button class="action-btn accept" onclick="acceptVisit(this)">قبول</button>
+                                        <button class="action-btn reject" onclick="rejectVisit(this)">رفض</button>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-history" style="display:none;">
+                <div class="card">
+                    <div class="section-heading"> سجل الزيارات</div>
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <input type="text" placeholder="بحث في السجل..." oninput="filterTable(this,'history-tbody')">
+                        </div>
+                        <select class="filter-select">
+                            <option>هذا الشهر</option>
+                            <option>الشهر الماضي</option>
+                            <option>آخر 3 أشهر</option>
+                        </select>
+                    </div>
+                    <div style="overflow-x:auto;">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>اسم المريض</th>
+                                <th>عنوان المريض</th>
+                                <th>موعد الزيارة</th>
+                                <th>التشخيص</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-tbody">
+                            <tr>
+                                <td>1</td>
+                                <td>نبيل حسن</td>
+                                <td>القاهرة</td>
+                                <td>2026-04-05 11:00</td>
+                                <td>جلطة بسيطة في اليد</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>سامح جلال </td>
+                                <td>الهرم</td>
+                                <td>2026-04-07 07:30</td>
+                                <td>ارتفاع في ضغط الدم</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>نبيل محمود </td>
+                                <td>السادات</td>
+                                <td>2026-02-09 03:30</td>
+                                <td>جلطة علي المخ</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>محمود حسن</td>
+                                <td>القاهرة</td>
+                                <td>2026-01-05 09:00</td>
+                                <td>ارتفاع في ضغط الدم</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>نادي عبدالحميد</td>
+                                <td>الجيزة</td>
+                                <td>2026-01-07 08:30</td>
+                                <td>ارتفاع في ضغط الدم</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>شهاب سيد</td>
+                                <td>القاهرة</td>
+                                <td>2026-03-07 07:30</td>
+                                <td>جلطة علي المخ</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>نبيل عبدالفتاح</td>
+                                <td>المنيب</td>
+                                <td>2026-04-05 02:30</td>
+                                <td>جلطة بالقدم اليسري</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <div class="footer-small">
+        <div class="footer-logo">
+            <img src="assets/logo.png" alt="">
+        </div>
+        <p> حقوق النشر والطبع محفوظه زيارة | &copy;  2026</p>
+    </div>
+</footer>
+<script src="js/dashbordDoctor.js"></script>
+<script src="js/header.js"></script>
+</body>
+</html>

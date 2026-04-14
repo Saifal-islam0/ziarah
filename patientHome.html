@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/patientHome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+    <div class="middle-header">
+        <div class="logo">
+            <a href="index.html"><img src="assets/logo.png" alt="شعار زيارة"></a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="ابحث عن طبيب أو خدمة..." id="searchInput" autocomplete="off">
+            <div class="search-results-dropdown" id="searchDropdown">
+                <div class="search-results-header">
+                    <span><strong id="resultsCount"></strong>&nbsp;لـ "<span id="searchQuery"></span>"</span>
+                    <button class="search-close-btn" onclick="closeSearchDropdown()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="search-loading" id="searchLoading"><div class="search-spinner"></div><p>جاري البحث...</p></div>
+                <div class="search-empty" id="searchEmpty"><i class="fa-solid fa-magnifying-glass"></i><p>لا توجد نتائج مطابقة</p></div>
+                <div class="search-results-list" id="searchResultsList"></div>
+            </div>
+        </div>
+        <div class="theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></div>
+        <div class="lang">
+            <i class="fa-solid fa-earth-americas"></i>
+            <select onchange="changeLang(this.value)">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <nav class="nav">
+            <div class="lang-theme">
+                <div class="nav-theme" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="navThemeIcon"></i><span>تغيير الوضع</span></div>
+                <div class="nav-lang"><i class="fa-solid fa-earth-americas"></i>
+                    <select onchange="changeLang(this.value)"><option value="ar">العربية</option><option value="en">English</option></select>
+                </div>
+            </div>
+            <a href="patientHome.html" class="nav-active">الرئيسية</a>
+            <div class="list-services">
+                <a href="requestVisit.html">الخدمات <i class="fa-solid fa-angle-down"></i></a>
+                <ul class="items-services">
+                    <li>طلب طبيب</li><li>طلب تمريض</li><li>أخذ عينة</li><li>علاج طبيعي</li>
+                </ul>
+            </div>
+            <a href="requestVisit.html">طلب زيارة منزلية</a>
+            <a href="insurance.html">تأمين اعضاء هيئة التدريس</a>
+            <a href="mediCaltips.html">نصائح طبية</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+        </nav>
+        <div class="buttons">
+           <div class="user-menu">
+                <div class="user-avatar" onclick="toggleUserMenu()">
+                     <img src="assets/image/be7d92ded7de75fe6dc9fd4406e789ac22393930.png" alt="">
+                    <span id="userName">محمد احمد</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size:11px;"></i>
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="profile.html"><i class="fa-solid fa-user-pen"></i> الملف الشخصي</a>
+                    <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> سجل الزيارات</a>
+                    <a href="#"><i class="fa-solid fa-bell"></i> الإشعارات</a>
+                    <div class="user-dropdown-divider"></div>
+                    <a href="index.html" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="welcome-section">
+    <div class="hero-illustration">
+        <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="طلب زيارة">
+    </div>
+    <div class="welcome-bg-circles">
+        <span></span><span></span><span></span>
+    </div>
+    <div class="welcome-inner">
+        <div class="welcome-text">
+            <p class="welcome-greeting">مرحباً بعودتك</p>
+            <h1>أهلاً <span id="userNameHero">محمد</span>، كيف حالك اليوم؟</h1>
+            <p class="welcome-sub">رعايتك الصحية أولويتنا — اطلب زيارة منزلية أو تصفح أفضل الأطباء المتاحين الآن</p>
+            <div class="welcome-btns">
+                <a href="requestVisit.html" class="w-btn-primary">
+                    اطلب زيارة الآن <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <button class="w-btn-outline" onclick="openEmergency()">
+                    <i class="fa-solid fa-triangle-exclamation"></i> طوارئ
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="emergency-overlay" id="emergencyModal">
+    <div class="emergency-modal">
+        <span class="close" onclick="closeEmergency()"><i class="fa-solid fa-xmark"></i></span>
+        <div class="emergency-icon"><i class="fa-solid fa-phone"></i></div>
+        <h2>رقم الطوارئ</h2>
+        <p class="emergency-number">123</p>
+        <a href="tel:123" class="call-btn">اتصل الآن</a>
+    </div>
+</div>
+
+<section class="symptoms-section">
+    <div class="section-header">
+        <div>
+            <h2>مما تعاني؟</h2>
+            <div class="section-line"></div>
+        </div>
+        <p class="section-sub">اختر التخصص المناسب لحالتك وسنوصلك بأفضل طبيب</p>
+    </div>
+
+    <div class="symptoms-grid">
+        <a href="requestVisit.html" class="symptom-card">
+            <div class="symptom-icon" >
+                <i class="fa-solid fa-head-side-cough"></i>
+            </div>
+            <span>حمى وبرد</span>
+        </a>
+        <a href="requestVisit.html" class="symptom-card">
+            <div class="symptom-icon" >
+                <i class="fa-solid fa-bone"></i>
+            </div>
+            <span>آلام العظام</span>
+        </a>
+        <a href="requestVisit.html" class="symptom-card">
+            <div class="symptom-icon" >
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <span>القلب والضغط</span>
+        </a>
+        <a href="requestVisit.html" class="symptom-card">
+            <div class="symptom-icon" >
+                <i class="fa-solid fa-brain"></i>
+            </div>
+            <span>مخ وأعصاب</span>
+        </a>
+        <a href="requestVisit.html" class="symptom-card">
+            <div class="symptom-icon" >
+                <i class="fa-solid fa-child-reaching"></i>
+            </div>
+            <span>أمراض الأطفال</span>
+        </a>
+        <a href="requestVisit.html" class="symptom-card">
+            <div class="symptom-icon" >
+                <i class="fa-solid fa-venus"></i>
+            </div>
+            <span>نساء وتوليد</span>
+        </a>
+
+        <a href="requestVisit.html" class="symptom-card">
+            <div class="symptom-icon" >
+                <i class="fa-solid fa-lungs"></i>
+            </div>
+            <span>الجهاز التنفسي</span>
+        </a>
+        <a href="requestVisit.html" class="symptom-card">
+            <div class="symptom-icon" >
+                <i class="fa-solid fa-person-dots-from-line"></i>
+            </div>
+            <span>الجلدية</span>
+        </a>
+        <a href="requestVisit.html" class="symptom-card">
+            <div class="symptom-icon" >
+                <i class="fa-solid fa-syringe"></i>
+            </div>
+            <span>السكري والغدد</span>
+        </a>
+        <a href="requestVisit.html" class="symptom-card symptom-more">
+            <div class="symptom-icon" >
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+            <span>المزيد</span>
+        </a>
+    </div>
+</section>
+
+<section class="providers-section section-doctors" >
+    <div class="section-header">
+        <div>
+            <h2>أعلى الأطباء تقييماً</h2>
+            <div class="section-line line-w"></div>
+        </div>
+    </div>
+
+    <div class="providers-scroll ">
+
+        <div class="provider-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="د. محمد محمود">
+                <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">د. محمد محمود</p>
+                <p class="provider-spec">عظام</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 500 جنيه</p>
+            </div>
+            <button class="provider-book-btn" onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+
+        <div class="provider-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="د. محمد محمود">
+                <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">د. محمد محمود</p>
+                <p class="provider-spec">عظام</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 500 جنيه</p>
+            </div>
+            <button class="provider-book-btn" onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+
+        <div class="provider-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="د. محمد محمود">
+                <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">د. محمد محمود</p>
+                <p class="provider-spec">عظام</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 500 جنيه</p>
+            </div>
+            <button class="provider-book-btn" onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+
+        <div class="provider-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="د. محمد محمود">
+                <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">د. محمد محمود</p>
+                <p class="provider-spec">عظام</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 500 جنيه</p>
+            </div>
+            <button class="provider-book-btn" onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+
+        <div class="provider-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="د. محمد محمود">
+                <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">د. محمد محمود</p>
+                <p class="provider-spec">عظام</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 500 جنيه</p>
+            </div>
+            <button class="provider-book-btn" onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+
+        <div class="provider-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="د. محمد محمود">
+                <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">د. محمد محمود</p>
+                <p class="provider-spec">عظام</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 500 جنيه</p>
+            </div>
+            <button class="provider-book-btn" onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+
+        <div class="provider-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/mohamed.png" alt="د. محمد محمود">
+                <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">د. محمد محمود</p>
+                <p class="provider-spec">عظام</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 500 جنيه</p>
+            </div>
+            <button class="provider-book-btn" onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+
+    </div>
+    <a href="requestVisit.html" class="see-all-link">عرض الكل <i class="fa-solid fa-arrow-left"></i></a>
+
+</section>
+
+<section class="providers-section section-nurse" >
+    <div class="section-header">
+        <div>
+            <h2>أعلى الممرضين تقييماً</h2>
+            <div class="section-line line-w"></div>
+        </div>
+    </div>
+
+    <div class="providers-scroll">
+
+        <div class="provider-card nurse-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
+                <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">أ. هالة مصطفى</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 200 جنيه</p>
+            </div>
+            <button class="provider-book-btn " onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+
+        <div class="provider-card nurse-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
+                <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">أ. هالة مصطفى</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 200 جنيه</p>
+            </div>
+            <button class="provider-book-btn " onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+
+        <div class="provider-card nurse-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
+                <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">أ. هالة مصطفى</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 200 جنيه</p>
+            </div>
+            <button class="provider-book-btn " onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+        <div class="provider-card nurse-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
+                <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">أ. هالة مصطفى</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 200 جنيه</p>
+            </div>
+            <button class="provider-book-btn " onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+        <div class="provider-card nurse-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
+                <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">أ. هالة مصطفى</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 200 جنيه</p>
+            </div>
+            <button class="provider-book-btn " onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+        <div class="provider-card nurse-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
+                <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">أ. هالة مصطفى</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 200 جنيه</p>
+            </div>
+            <button class="provider-book-btn " onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+        <div class="provider-card nurse-card" onclick="window.location.href='doctorProfile.html'">
+            <div class="provider-img">
+                <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
+                <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+            <div class="provider-info">
+                <p class="provider-name">أ. هالة مصطفى</p>
+                <p class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> 200 جنيه</p>
+            </div>
+            <button class="provider-book-btn " onclick="event.stopPropagation(); window.location.href='requestVisit.html'">
+                احجز الآن
+            </button>
+        </div>
+
+    </div>
+    <a href="requestVisit.html" class="see-all-link">عرض الكل <i class="fa-solid fa-arrow-left"></i></a>
+
+</section>
+
+<section class="insurance-section">
+    <div class="insurance-section-inner">
+        <div class="insurance-text">
+
+            <h2>تأمينك</h2>
+            <div class="section-line line-color" ></div>
+            <p>
+                ابحث عن المستشفيات والصيدليات ومراكز الأشعة والمعامل التابعة لتأمينك الطبي بسهولة
+            </p>
+            <div class="insurance-types">
+                <div class="ins-type-chip"><i class="fa-solid fa-hospital"></i> مستشفيات</div>
+                <div class="ins-type-chip"><i class="fa-solid fa-pills"></i> صيدليات</div>
+                <div class="ins-type-chip"><i class="fa-solid fa-x-ray"></i> مراكز أشعة</div>
+                <div class="ins-type-chip"><i class="fa-solid fa-microscope"></i> معامل تحاليل</div>
+            </div>
+            <a href="insurance.html" class="ins-go-btn">
+                 ابحث الان
+            </a>
+        </div>
+    <div class="insurance-img">
+        <img src="assets/image/vecteezy_hospital-building-with-ambulance-isolated-on-a-transparent_51338414.png" alt="صورة مستشفيات">
+    </div>      
+
+    </div>
+</section>
+
+<footer>
+    <div class="footer-small">
+        <div class="footer-logo"><img src="assets/logo.png" alt="زيارة"></div>
+        <p>حقوق النشر والطبع محفوظه زيارة | &copy; 2026</p>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="js/header.js"></script>
+<script src="js/patientHome.js"></script>
+</body>
+</html>

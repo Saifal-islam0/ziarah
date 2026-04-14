@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+    <div class="middle-header">
+        <div class="logo">
+            <a href="index.html"><img src="assets/logo.png" alt="شعار زيارة"></a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="ابحث عن طبيب أو خدمة..." id="searchInput" autocomplete="off">
+            <div class="search-results-dropdown" id="searchDropdown">
+                <div class="search-results-header">
+                    <span><strong id="resultsCount"></strong>&nbsp;لـ "<span id="searchQuery"></span>"</span>
+                    <button class="search-close-btn" onclick="closeSearchDropdown()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="search-loading" id="searchLoading"><div class="search-spinner"></div><p>جاري البحث...</p></div>
+                <div class="search-empty" id="searchEmpty"><i class="fa-solid fa-magnifying-glass"></i><p>لا توجد نتائج مطابقة</p></div>
+                <div class="search-results-list" id="searchResultsList"></div>
+            </div>
+        </div>
+        <div class="theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></div>
+        <div class="lang">
+            <i class="fa-solid fa-earth-americas"></i>
+            <select onchange="changeLang(this.value)">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <nav class="nav">
+            <div class="lang-theme">
+                <div class="nav-theme" onclick="toggleTheme()">
+                    <i class="fa-solid fa-moon" id="navThemeIcon"></i>
+                    <span>تغيير الوضع</span>
+                </div>
+                <div class="nav-lang">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <select onchange="changeLang(this.value)">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+            <a href="index.html">الرئيسية</a>
+            <div class="list-services">
+                <a href="requestVisit.html">الخدمات <i class="fa-solid fa-angle-down"></i></a>
+                <ul class="items-services">
+                    <li>طلب طبيب</li>
+                    <li>طلب تمريض</li>
+                    <li>أخذ عينة</li>
+                    <li>علاج طبيعي</li>
+                </ul>
+            </div>
+            <a href="requestVisit.html">طلب زيارة منزلية</a>
+            <a href="insurance.html">تأمين اعضاء هيئة التدريس</a>
+            <a href="mediCaltips.html">نصائح طبية</a>
+            <a href="about.html" class="nav-active">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+        </nav>
+        <div class="buttons">
+            <a href="register.html"><button class="join-btn">إنشاء حساب</button></a>
+            <a href="login.html"><button class="login-btn">تسجيل الدخول</button></a>
+        </div>
+    </div>
+</header>
+
+
+<section class="about-section">
+    <div class="about-container">
+
+        <div class="about-text-wrap">
+            <h2>ما هي منصة زيارة؟</h2>
+            <div class="line line-w"></div>
+            <p>
+                <strong>زيارة</strong> هي منصة رقمية متكاملة تهدف إلى تحسين جودة الخدمات الطبية وتيسير وصول المرضى إليها من خلال تقديم خدمة الزيارة الطبية المنزلية. تربط المنصة بين المرضى ونخبة من الأطباء والممرضين المتخصصين، مما يوفر الوقت والجهد وييسر الحصول على الرعاية الصحية اللازمة دون مغادرة المنزل.
+            </p>
+            <p>
+                تتضمن المنصة أيضاً خدمة التأمين الطبي لأعضاء هيئة التدريس، وتوفر معلومات شاملة عن مراكز الأشعة والتحاليل والصيدليات المشاركة في برنامج التأمين.
+            </p>
+        </div>
+
+        <div class="about-info">
+            <div class="about-badge">
+                مشروع تخرج لطلاب قسم تكنولوجيا التعليم كلية التربية النوعية جامعة الفيوم للعام الدراسي 2025 - 2026
+            </div>
+
+        </div>
+
+    </div>
+</section> 
+
+
+<section class="team-section">
+    <div class="team-container">
+
+        <div class="team-heading">
+            <h2>فريق العمل</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="team-supervisor-row">
+
+            <div class="member-card leader-card">
+                <div class="member-img-wrap">
+                    <img src="assets/image/ahmed arafat.png" alt="قائد الفريق" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Leader</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">أحمد عرفات</h3>
+                    <p class="member-desc">قائد المجموعة، يعمل ك مركتينج</p>
+                </div>
+            </div>
+
+            <div class="member-card supervisor-card">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="مشرف المشروع" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Supervisor</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">أ.د / محمد رمضان</h3>
+                    <p class="member-desc">أستاذ ودكتور بقسم تكنولوجيا التعليم، المشرف والموجه للمشروع</p>
+                </div>
+            </div>
+
+            <div class="member-card leader-card">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="مساعد القائد" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Assistant Leader</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سيف الاسلام رمضان</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="team-members-grid">
+
+            <div class="member-card" style="animation-delay:0.05s">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="عضو" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Marketing - Graphic Design</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سامح جميل</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+
+                </div>
+            </div>
+
+            <div class="member-card" style="animation-delay:0.05s">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="عضو" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Marketing - Graphic Design</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سامح جميل</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+
+                </div>
+            </div>
+
+            <div class="member-card" style="animation-delay:0.05s">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="عضو" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Marketing - Graphic Design</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سامح جميل</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+
+                </div>
+            </div>
+
+            <div class="member-card" style="animation-delay:0.05s">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="عضو" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Marketing - Graphic Design</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سامح جميل</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+
+                </div>
+            </div>
+
+            <div class="member-card" style="animation-delay:0.05s">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="عضو" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Marketing - Graphic Design</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سامح جميل</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+
+                </div>
+            </div>
+            <div class="member-card" style="animation-delay:0.05s">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="عضو" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Marketing - Graphic Design</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سامح جميل</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+
+                </div>
+            </div>
+
+            <div class="member-card" style="animation-delay:0.05s">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="عضو" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Marketing - Graphic Design</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سامح جميل</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+
+                </div>
+            </div>
+
+            <div class="member-card" style="animation-delay:0.05s">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="عضو" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Marketing - Graphic Design</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سامح جميل</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+
+                </div>
+            </div>
+
+            <div class="member-card" style="animation-delay:0.05s">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="عضو" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Marketing - Graphic Design</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سامح جميل</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+
+                </div>
+            </div>
+
+            <div class="member-card" style="animation-delay:0.05s">
+                <div class="member-img-wrap">
+                    <img src="assets/image/b3b3faed5a578a21a8fcec059f989ca0964f6737.png" alt="عضو" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <span class="member-number">Marketing - Graphic Design</span>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">سامح جميل</h3>
+                    <p class="member-desc">مساعد القائد، يعمل ك Fullstack </p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <div class="footer-small">
+        <div class="footer-logo"><img src="assets/logo.png" alt="زيارة"></div>
+        <p>حقوق النشر والطبع محفوظه زيارة | &copy; 2026</p>
+    </div>
+</footer>
+
+<script src="js/header.js"></script>
+</body>
+</html>
