@@ -825,6 +825,10 @@ body.dark-mode .map-filter-btn.active {
 
     .hero-content {
         padding: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     .hero-content h1 {
         font-size: 17px;
