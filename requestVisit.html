@@ -87,6 +87,7 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1>طلب زيارة منزلية</h1>
+        <div class="line"></div>
         <p>احصل على الرعاية الصحية في منزلك على يد نخبة من الأطباء والممرضين المتخصصين</p>
 
     </div>
@@ -170,22 +171,193 @@
     </div>
 
     <div class="cards-grid" id="cardsGrid">
-        <div class="provider-card">
+        <div class="provider-card"
+             data-id="1"
+             data-type="doctor"
+             data-name="د. محمد محمود"
+             data-spec="عظام"
+             data-price="500"
+             data-rating="4.5"
+             data-img="assets/image/mohamed.png">
             <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
+                <img src="assets/image/mohamed.png" alt="د. محمد محمود">
                 <span class="provider-rating-badge">
                     <i class="fa-solid fa-star"></i> 4.5
                 </span>
             </div>
             <div class="provider-card-body">
                 <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
+                <div class="provider-spec">عظام</div>
                 <div class="provider-price">
                     <i class="fa-solid fa-briefcase-medical"></i>
                     سعر الكشف: <span>500 جنيه</span>
+                </div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+            </div>
+        </div>
+        <div class="provider-card"
+             data-id="2" data-type="doctor" data-name="د. سارة خالد"
+             data-spec="باطنة" data-price="700" data-rating="4.5"
+             data-img="assets/image/sara.png">
+            <div class="provider-img">
+                <img src="assets/image/sara.png" alt="د. سارة خالد">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 4.5</span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. سارة خالد</div>
+                <div class="provider-spec">باطنة</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>700 جنيه</span></div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+            </div>
+        </div>
+        <div class="provider-card"
+             data-id="3" data-type="doctor" data-name="د. احمد الصاوي"
+             data-spec="عظام" data-price="400" data-rating="4.1"
+             data-img="assets/image/ahmed.jpg">
+            <div class="provider-img">
+                <img src="assets/image/ahmed.jpg" alt="د. احمد الصاوي">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 4.1</span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. احمد الصاوي</div>
+                <div class="provider-spec">عظام</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>400 جنيه</span></div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+            </div>
+        </div>
+        <div class="provider-card"
+             data-id="4" data-type="doctor" data-name="د. ابراهيم عبدالجواد"
+             data-spec="أطفال وحديثي الولادة" data-price="550" data-rating="4.8"
+             data-img="assets/image/ibrahim.jpeg">
+            <div class="provider-img">
+                <img src="assets/image/ibrahim.jpeg" alt="د. ابراهيم عبدالجواد">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 4.8</span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. ابراهيم عبدالجواد</div>
+                <div class="provider-spec">أطفال وحديثي الولادة</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>550 جنيه</span></div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+            </div>
+        </div>
+        <div class="provider-card"
+             data-id="5" data-type="doctor" data-name="د. خالد علام"
+             data-spec="مخ وأعصاب" data-price="500" data-rating="4.4"
+             data-img="assets/image/khaled.jpg">
+            <div class="provider-img">
+                <img src="assets/image/khaled.jpg" alt="د. خالد علام">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 4.4</span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. خالد علام</div>
+                <div class="provider-spec">مخ وأعصاب</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>500 جنيه</span></div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+            </div>
+        </div>
+        <div class="provider-card"
+             data-id="6" data-type="doctor" data-name="د. محمود فريد"
+             data-spec="جلدية" data-price="500" data-rating="3.9"
+             data-img="assets/image/mahmoud.jpg">
+            <div class="provider-img">
+                <img src="assets/image/mahmoud.jpg" alt="د. محمود فريد">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 3.9</span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. محمود فريد</div>
+                <div class="provider-spec">جلدية</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>500 جنيه</span></div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+            </div>
+        </div>
+        <div class="provider-card"
+             data-id="7" data-type="doctor" data-name="د. عمر ابراهيم"
+             data-spec="باطنة" data-price="650" data-rating="4.4"
+             data-img="assets/image/omar.png">
+            <div class="provider-img">
+                <img src="assets/image/omar.png" alt="د. عمر ابراهيم">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 4.4</span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. عمر ابراهيم</div>
+                <div class="provider-spec">باطنة</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>650 جنيه</span></div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+            </div>
+        </div>
+        <div class="provider-card"
+             data-id="8" data-type="doctor" data-name="د. رشا صديق"
+             data-spec="نساء وتوليد" data-price="700" data-rating="4.6"
+             data-img="assets/image/rasha.jpg">
+            <div class="provider-img">
+                <img src="assets/image/rasha.jpg" alt="د. رشا صديق">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 4.6</span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. رشا صديق</div>
+                <div class="provider-spec">نساء وتوليد</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>700 جنيه</span></div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+            </div>
+        </div>
+        <div class="provider-card"
+             data-id="9" data-type="doctor" data-name="د. سعد رشاد"
+             data-spec="أطفال وحديثي الولادة" data-price="350" data-rating="4.7"
+             data-img="assets/image/saad.JPG">
+            <div class="provider-img">
+                <img src="assets/image/saad.JPG" alt="د. سعد رشاد">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 4.7</span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. سعد رشاد</div>
+                <div class="provider-spec">أطفال وحديثي الولادة</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>350 جنيه</span></div>
+            </div>
+            <div class="provider-card-footer">
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
+                <a href="doctorProfile.html" class="more-btn">المزيد</a>
+            </div>
+        </div>
+        <div class="provider-card">
+            <div class="provider-img">
+                <img src="assets/image/sara.png" alt="">
+                </span>
+                <span class="provider-rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.5
+                </span>
+            </div>
+            <div class="provider-card-body">
+                <div class="provider-name">د. سارة عبدالجواد</div>
+                <div class="provider-spec">
+                    باطنة
+                </div>
+                <div class="provider-price">
+                    <i class="fa-solid fa-briefcase-medical"></i>
+                    سعر الكشف: <span>550 جنيه</span>
                 </div>
             </div>
             <div class="provider-card-footer">
@@ -196,20 +368,20 @@
         </div>
         <div class="provider-card">
             <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
+                <img src="assets/image/taha.jpg" alt="">
                 </span>
                 <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
+                    <i class="fa-solid fa-star"></i> 4.3
                 </span>
             </div>
             <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
+                <div class="provider-name">د. طه علوان</div>
                 <div class="provider-spec">
-                    عظام
+                    طب نفسي
                 </div>
                 <div class="provider-price">
                     <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
+                    سعر الكشف: <span>600 جنيه</span>
                 </div>
             </div>
             <div class="provider-card-footer">
@@ -218,244 +390,58 @@
 
             </div>
         </div>
-        <div class="provider-card">
+        <div class="provider-card"
+             data-id="10" data-type="doctor" data-name="د. سارة عبدالجواد"
+             data-spec="باطنة" data-price="550" data-rating="4.5"
+             data-img="assets/image/sara.png">
             <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
-                <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
-                </span>
+                <img src="assets/image/sara.png" alt="د. سارة عبدالجواد">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 4.5</span>
             </div>
             <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
-                <div class="provider-price">
-                    <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
-                </div>
+                <div class="provider-name">د. سارة عبدالجواد</div>
+                <div class="provider-spec">باطنة</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>550 جنيه</span></div>
             </div>
             <div class="provider-card-footer">
-                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
                 <a href="doctorProfile.html" class="more-btn">المزيد</a>
-
             </div>
         </div>
-        <div class="provider-card">
+        <div class="provider-card"
+             data-id="11" data-type="doctor" data-name="د. طه علوان"
+             data-spec="طب نفسي" data-price="600" data-rating="4.3"
+             data-img="assets/image/taha.jpg">
             <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
-                <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
-                </span>
+                <img src="assets/image/taha.jpg" alt="د. طه علوان">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 4.3</span>
             </div>
             <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
-                <div class="provider-price">
-                    <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
-                </div>
+                <div class="provider-name">د. طه علوان</div>
+                <div class="provider-spec">طب نفسي</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>600 جنيه</span></div>
             </div>
             <div class="provider-card-footer">
-                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
                 <a href="doctorProfile.html" class="more-btn">المزيد</a>
-
             </div>
         </div>
-        <div class="provider-card">
+        <div class="provider-card"
+             data-id="12" data-type="doctor" data-name="د. نور عبدالكريم"
+             data-spec="أطفال وحديثي الولادة" data-price="400" data-rating="4.5"
+             data-img="assets/image/nour.png">
             <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
-                <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
-                </span>
+                <img src="assets/image/nour.png" alt="د. نور عبدالكريم">
+                <span class="provider-rating-badge"><i class="fa-solid fa-star"></i> 4.5</span>
             </div>
             <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
-                <div class="provider-price">
-                    <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
-                </div>
+                <div class="provider-name">د. نور عبدالكريم</div>
+                <div class="provider-spec">أطفال وحديثي الولادة</div>
+                <div class="provider-price"><i class="fa-solid fa-briefcase-medical"></i> سعر الكشف: <span>400 جنيه</span></div>
             </div>
             <div class="provider-card-footer">
-                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
+                <button class="book-btn" onclick="openBookingModal(this)">طلب طبيب</button>
                 <a href="doctorProfile.html" class="more-btn">المزيد</a>
-
-            </div>
-        </div>
-        <div class="provider-card">
-            <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
-                <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
-                </span>
-            </div>
-            <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
-                <div class="provider-price">
-                    <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
-                </div>
-            </div>
-            <div class="provider-card-footer">
-                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
-                <a href="doctorProfile.html" class="more-btn">المزيد</a>
-
-            </div>
-        </div>
-        <div class="provider-card">
-            <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
-                <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
-                </span>
-            </div>
-            <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
-                <div class="provider-price">
-                    <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
-                </div>
-            </div>
-            <div class="provider-card-footer">
-                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
-                <a href="doctorProfile.html" class="more-btn">المزيد</a>
-
-            </div>
-        </div>
-        <div class="provider-card">
-            <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
-                <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
-                </span>
-            </div>
-            <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
-                <div class="provider-price">
-                    <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
-                </div>
-            </div>
-            <div class="provider-card-footer">
-                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
-                <a href="doctorProfile.html" class="more-btn">المزيد</a>
-
-            </div>
-        </div>
-        <div class="provider-card">
-            <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
-                <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
-                </span>
-            </div>
-            <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
-                <div class="provider-price">
-                    <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
-                </div>
-            </div>
-            <div class="provider-card-footer">
-                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
-                <a href="doctorProfile.html" class="more-btn">المزيد</a>
-
-            </div>
-        </div>
-        <div class="provider-card">
-            <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
-                <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
-                </span>
-            </div>
-            <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
-                <div class="provider-price">
-                    <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
-                </div>
-            </div>
-            <div class="provider-card-footer">
-                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
-                <a href="doctorProfile.html" class="more-btn">المزيد</a>
-
-            </div>
-        </div>
-        <div class="provider-card">
-            <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
-                <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
-                </span>
-            </div>
-            <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
-                <div class="provider-price">
-                    <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
-                </div>
-            </div>
-            <div class="provider-card-footer">
-                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
-                <a href="doctorProfile.html" class="more-btn">المزيد</a>
-
-            </div>
-        </div>
-        <div class="provider-card">
-            <div class="provider-img">
-                <img src="assets/image/mohamed.png" alt="">
-                </span>
-                <span class="provider-rating-badge">
-                    <i class="fa-solid fa-star"></i> 4.5
-                </span>
-            </div>
-            <div class="provider-card-body">
-                <div class="provider-name">د. محمد محمود</div>
-                <div class="provider-spec">
-                    عظام
-                </div>
-                <div class="provider-price">
-                    <i class="fa-solid fa-briefcase-medical"></i>
-                    سعر الكشف: <span>500 جنيه</span>
-                </div>
-            </div>
-            <div class="provider-card-footer">
-                <button class="book-btn" onclick="openBookingModal()"> طلب طبيب</button>
-                <a href="doctorProfile.html" class="more-btn">المزيد</a>
-
             </div>
         </div>
     </div>
@@ -465,19 +451,7 @@
         <h3>لا توجد نتائج</h3>
         <p>جرب تغيير مدخلاتك</p>
     </div>
-    <div class="pagination-wrap" id="paginationWrap">
-        <button class="page-btn arrow disabled">
-            <i class="fa-solid fas fa-chevron-right"></i>
-        </button>    
-        <button class="page-btn active"><span>1</span></button>
-        <button class="page-btn"><span>2</span></button>    
-        <button class="page-btn"><span>3</span></button>    
-
-        <button class="page-btn">
-            <i class="fa-solid fa-chevron-left"></i>
-        </button>
-
-    </div>
+    <div class="pagination-wrap" id="paginationWrap"></div>
 
 </main>
 
@@ -493,18 +467,20 @@
 
         </div>
 
-        <div class="booking-doctor-info" id="bookingDoctorInfo">
-            <div class="booking-doc-img">
+        <div class="booking-provider-info" id="bookingDoctorInfo">
+            <div class="booking-provider-img">
                 <img src="assets/image/mohamed.png" alt="">
             </div>
             <div>
-                <div class="booking-doc-name">محمد محمود</div>
-                <div class="booking-doc-spec">عظام</div>
-                <div class="booking-doc-price">سعر الكشف 500 جنيه</div>
+                <div class="booking-provider-name">محمد محمود</div>
+                <div class="booking-provider-spec">عظام</div>
+                <div class="booking-provider-price">سعر الكشف 500 جنيه</div>
             </div>
         </div>
 
         <form id="bookingForm" onsubmit="submitBooking(event)">
+            <input type="hidden" name="doctorId" id="bookingDoctorId">
+            <input type="hidden" name="visitType" id="bookingVisitType" value="doctor">
             <div class="double-input">
                 <div class="input-group">
                     <label>الاسم بالكامل</label>

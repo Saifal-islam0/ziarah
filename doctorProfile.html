@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
-<body>
+
+<body data-doctor-id="1">
 <header class="header">
     <div class="middle-header">
         <div class="logo">
@@ -108,8 +109,8 @@
                     <p class="price">500 جنيه</p>
                 </div>
             </div>
-            <button class="btn primary" onclick="window.location.href='requestVisit.html'">
-                طلب الان
+            <button class="btn primary">
+                <i class="fa-solid fa-calendar-plus"></i> طلب الآن
             </button>
             <a class="btn outline" href="contact.html">
                 تواصل معنا
@@ -221,13 +222,108 @@
                 <i class="fa-solid fa-star" data-value="4"></i>
                 <i class="fa-solid fa-star" data-value="5"></i>
             </div>
-            <textarea id="review" placeholder="اكتب تعليقك هنا..."></textarea>
+            <textarea id="review" name="Comment" placeholder="اكتب تعليقك هنا..." style="font-family:'Cairo',sans-serif;"></textarea>
         </div>
         <button onclick="submitRating()">
              نشر التقييم
         </button>
     </div>
 </section>
+
+<div class="overlay" id="bookingOverlay" onclick="closeBookingIfOutside(event)">
+    <div class="booking-modal">
+        <div class="booking-modal-header">
+            <div class="booking-modal-title">
+                طلب زيارة
+            </div>
+            <button class="booking-close-btn" onclick="closeBookingModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <div class="booking-provider-info" id="bookingDoctorInfo">
+            <div class="booking-provider-img">
+                <img src="assets/image/mohamed.png" alt="">
+            </div>
+            <div>
+                <div class="booking-provider-name">محمد محمود</div>
+                <div class="booking-provider-spec">عظام</div>
+                <div class="booking-provider-price">سعر الكشف 500 جنيه</div>
+            </div>
+        </div>
+
+        <form id="bookingForm" onsubmit="submitBooking(event)">
+            <input type="hidden" name="DoctorId" id="bookingDoctorId">
+            <input type="hidden" name="VisitType" id="bookingVisitType" value="doctor">
+            <div class="double-input">
+                <div class="input-group">
+                    <label>الاسم بالكامل</label>
+                    <input type="text" name="FullName" placeholder="" required>
+                </div>
+                <div class="input-group">
+                    <label>رقم الهاتف للتواصل</label>
+                    <input type="text" name="Phone" placeholder="01xxxxxxxxx" required pattern="^01[0125][0-9]{8}$" title="أدخل رقم هاتف مصري صحيح">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>العنوان بالتفصيل</label>
+                <input type="text" name="Address" placeholder="المحافظة - الحي - الشارع - رقم المبنى..." required>
+            </div>
+
+            <div class="double-input">
+                <div class="input-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" name="Email" placeholder="info@gmail.com">
+                </div>
+                <div class="input-group">
+                    <label>اختيار الموعد</label>
+                    <input type="datetime-local" name="AppointmentDate" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>الحالة المرضية</label>
+                <input type="text" name="Condition" placeholder="اذكر الأعراض أو الحالة التي تحتاج رعاية..." required>
+            </div>
+
+            <div class="input-group file-upload">
+                <label for="nationalId" id="nationalIdLabel">
+                     رفع صورة بطاقة الرقم القومي
+                </label>
+                <input type="file" id="nationalId" name="NationalIdImage" accept="image/*" required>
+            </div>
+
+            <div class="input-group">
+                <label>ملاحظات إضافية <span style="color:#aaa;font-weight:400">(اختياري)</span></label>
+                <textarea name="Notes" placeholder="أي معلومات إضافية تساعد الطبيب..."></textarea>
+            </div>
+
+            <div class="booking-form-footer">
+                <button type="submit" class="submit-btn">
+                    طلب الآن
+                </button>
+                <a href="register.html" class="register-link">
+                     إنشاء حساب | حتي لا تحتاج لإدخال البيانات في المرة القادمة
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="overlay " id="successOverlay">
+    <div class="success-modal">
+        <div class="success-icon">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h2>تمت العملية بنجاح</h2>
+        <p>انتظر تأكيد الموعد على رسائل الواتساب<br>سنرسل إليك التفاصيل قريباً</p>
+        <button class="submit-btn" onclick="closeSuccessModal()" style="margin-top:20px; width:auto; padding:10px 40px;">
+            حسناً
+        </button>
+    </div>
+</div>
 
 <footer>
     <div class="footer-small">
