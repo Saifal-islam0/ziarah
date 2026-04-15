@@ -416,6 +416,9 @@ body.dark-mode .member-badge {
 }
 
 @media (max-width: 768px) {
+    h2  {
+        font-size: 22px !important;
+    }
     .team-container { 
         width: 92%; 
     }
@@ -438,14 +441,16 @@ body.dark-mode .member-badge {
 }
 
 @media (max-width: 480px) {
+    h2  {
+        font-size: 20px !important;
+    }
     .team-container { 
         width: 94%; 
     }
 
     .supervisor-card .member-img-wrap img,
     .supervisor-card .member-img-placeholder {
-        width: 160px;
-        height: 190px;
+        height: 280px;
     }
     .supervisor-card .member-info { 
         padding-top: 110px; 
@@ -454,7 +459,7 @@ body.dark-mode .member-badge {
         margin-top: 90px; 
     }
     .supervisor-card .member-img-wrap { 
-        top: -90px; 
+        top: -100px; 
     }
 
     .team-members-grid {
@@ -464,8 +469,7 @@ body.dark-mode .member-badge {
 
     .member-img-wrap img,
     .member-img-placeholder {
-         width: 130px; 
-         height: 155px; 
+         height: 200px; 
     }
     .member-info { 
         padding-top: 80px; 
@@ -474,7 +478,7 @@ body.dark-mode .member-badge {
         margin-top: 60px; 
     }
     .member-img-wrap { 
-        top: -60px; 
+        top: -50px; 
     }
     .member-name { 
         font-size: 13px; 

@@ -69,14 +69,27 @@ a {
 .hero-content {
     position: relative;
     z-index: 2;
-    text-align: center;
+    text-align: right;
     padding: 30px;
+
 }
 
 .hero-content h1 {
     color: white;
     font-size: 25px;
     font-weight: bold;
+}
+
+.line {
+
+    width: 350px;
+    height: 15px;
+    border: 3px solid #ffd166;
+    border-color: #ffd166 transparent transparent transparent;
+    border-radius: 50%/100% 100% 0 0;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    transform: scaleX(-1);
 }
 
 .hero-content p {
@@ -477,8 +490,9 @@ a {
 
 .map-modal {
     background: #fff;
-    border-radius: 16px;
-    width: 100%; max-width: 700px;
+    border-radius: 5px;
+    width: 100%; 
+    max-width: 1000px;
     overflow: hidden;
     box-shadow: 0 24px 64px rgba(0,0,0,0.2);
     animation: modalIn 0.25s ease;
@@ -487,6 +501,50 @@ a {
     from { transform: scale(0.95); opacity: 0; }
     to   { transform: scale(1);    opacity: 1; }
 }
+
+.map-filter-bar {
+    display: flex;
+    gap: 8px;
+    padding: 12px 18px;
+    border-bottom: 1px solid #eef2f7;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+}
+
+.map-filter-bar::-webkit-scrollbar { 
+    display: none; 
+}
+
+.map-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1.5px solid #e0ecf8;
+    background: #f7fafd;
+    color: #555;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: 0.2s;
+}
+
+.map-filter-btn:hover {
+    border-color: #128CCF;
+    color: #128CCF;
+    background: #edf6ff;
+}
+
+.map-filter-btn.active {
+    background: #128CCF;
+    border-color: #128CCF;
+    color: #fff;
+}
+
 
 .map-modal-header {
     display: flex; 
@@ -628,6 +686,20 @@ body.dark-mode .filter-title {
 }
 body.dark-mode .results-count { 
     color: #666; 
+}
+
+
+body.dark-mode .map-filter-bar { 
+    border-color: #2a3d54; 
+}
+body.dark-mode .map-filter-btn {
+    background: #1e2d40; 
+    border-color: #2a3d54;
+    color: #aaa; 
+}
+body.dark-mode .map-filter-btn.active { 
+    background: #128CCF; 
+    color: #fff; 
 }
 
 

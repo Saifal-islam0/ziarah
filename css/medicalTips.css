@@ -156,6 +156,7 @@ a {
     justify-content: flex-start;
     background: linear-gradient(rgba(18, 141, 207, 0.712), rgba(18, 201, 207, 0.705)), url("../assets/image/vecteezy_doctor-giving-hope-close-up-shot-of-young-female-physician_26522099.jpg");
     background-size: cover;
+
 }
 
 .tips-hero-inner {
@@ -165,38 +166,38 @@ a {
     align-items: center;
     justify-content: space-between;
     gap: 40px;
-    flex-wrap: wrap;
+    max-width: 600px;
+
 }
 
 .tips-hero-text {
     flex: 1;
     min-width: 400px;
-}
+    text-align: right;
 
-.tips-hero-label {
-    font-size: 13px !important;
-    color: rgba(255,255,255,0.80);
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin-bottom: 14px;
-    font-weight: 600;
 }
-
 
 .tips-hero-text h1 {
     color: white;
     font-size: 25px;
     font-weight: bold;
 }
-
+.line {
+    width: 300px;
+    height: 15px;
+    border: 3px solid #ffd166;
+    border-color: #ffd166 transparent transparent transparent;
+    border-radius: 50%/100% 100% 0 0;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    transform: scaleX(-1);
+}
 
 .tips-hero-sub {
-    font-size: 15px !important;
+    font-size: 18px !important;
     color: rgba(255,255,255,0.82);
-    max-width: 600px;
     line-height: 1.8;
-    margin-bottom: 28px;
+
 }
 
 
@@ -297,8 +298,8 @@ a {
     position: absolute;
     top: 16px;
     right: 16px;
-    background: white;
-    color: #ffd166;
+    background: #fde08a;
+    color: white;
     font-size: 12px;
     font-weight: 600;
     padding: 5px 14px;
@@ -868,7 +869,7 @@ body.dark-mode .modal-content .tip-warn {
  
     .tips-hero-inner {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 20px;
     }
  
@@ -959,6 +960,7 @@ body.dark-mode .modal-content .tip-warn {
 }
  
 @media (max-width: 480px) {
+
     .h2 {
         font-size: 20px !important;
     }
@@ -967,7 +969,7 @@ body.dark-mode .modal-content .tip-warn {
         padding: 20px 15px;
         min-height: unset;
     }
- 
+
     .tips-hero-text h1 {
         font-size: 17px;
     }

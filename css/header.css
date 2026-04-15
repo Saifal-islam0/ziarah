@@ -776,11 +776,12 @@ body.dark-mode .top-bar i:hover{
 body.dark-mode .top-bar a{
     color: #ffd166;
 }
+
 body.dark-mode .nav-bar {
     background: #0f3460;
     color: #e0e0e0;
 
 }
 body.dark-mode .items-services {
-    background: #0f3460;
+    background: #123d72;
 }
