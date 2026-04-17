@@ -235,7 +235,7 @@ a {
 }
 
 .profile-hero-meta i {
-    color: #0f76b3;
+    color: #ffd678;
     font-size: 12px;
 }
 
@@ -1231,6 +1231,29 @@ body.dark-mode .id-step2-notice {
 }
 
 @media (max-width: 768px) {
+    .user-menu {
+        z-index: 1000;
+    }
+
+    .user-dropdown {
+        z-index: 1001;
+        position:fixed;
+        top: 60px; 
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: 210px;
+        min-width: unset;
+    }
+
+    .user-dropdown.open {
+        display: block;
+    }
+
+    .user-avatar {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
     .profile-hero {
         margin: 15px;
         padding: 28px 20px;
@@ -1411,3 +1434,4 @@ body.dark-mode .id-step2-notice {
     }
 
 }
+

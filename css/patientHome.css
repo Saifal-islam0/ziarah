@@ -666,7 +666,7 @@ body.dark-mode .provider-name {
     gap: 40px;
     flex-wrap: wrap;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
 }
 
 .insurance-section-inner::before {
@@ -1812,6 +1812,8 @@ body.dark-mode .provider-name {
         margin: 10px; 
         padding: 22px 16px; 
         border-radius: 10px; 
+        overflow: hidden;
+
     }
     .welcome-text h1 { 
         font-size: 18px; 
@@ -1987,9 +1989,7 @@ body.dark-mode .section-line {
 body.dark-mode .section-sub { 
     color: #888; 
 }
-body.dark-mode .see-all-link { 
-    color: #84ccf3; 
-}
+
 
 
 body.dark-mode .insurance-section-inner {
