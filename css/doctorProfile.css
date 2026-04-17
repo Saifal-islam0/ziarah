@@ -1072,7 +1072,7 @@ body.dark-mode .success-modal p {
     }
  
     .doctor-info h2 { 
-        font-size: 15px; 
+        font-size: 18px !important; 
     }
  
     .left-side {

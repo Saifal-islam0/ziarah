@@ -961,7 +961,7 @@ body.dark-mode .modal-content .tip-warn {
 @media (max-width: 480px) {
 
     h2 {
-        font-size: 20px !important;
+        font-size: 18px !important;
     }
     .tips-hero {
         margin: 15px;

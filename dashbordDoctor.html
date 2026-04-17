@@ -125,7 +125,7 @@
             <div class="profile-hero-body">
                 <div class="profile-avatar-wrap">
                     <div class="profile-avatar" id="profileAvatarPreview">
-                        <img src="assets/image/sara.png" alt="صورة الطبيب" id="profileAvatarImg">
+                        <img src="assets/image/sara.png" alt="" id="profileAvatarImg">
                     </div>
                     <label class="profile-avatar-edit" for="avatarInput" title="تغيير الصورة">
                         <i class="fa-solid fa-camera"></i>
@@ -151,6 +151,9 @@
                 </button>
                 <button class="profile-tab" onclick="switchProfileTab('security', this)">
                     الأمان
+                </button>
+                <button class="profile-tab" onclick="switchProfileTab('documents', this)">
+                    المستندات
                 </button>
             </div>
 
@@ -185,10 +188,26 @@
                         </div>
                     </div>
 
+                    <div class="pf-row">
+                        <div class="pf-group">
+                            <label>النوع</label>
+                            <select name="Gender" id="inputGender">
+                                <option value="female" selected>أنثى</option>
+                                <option value="male">ذكر</option>
+                            </select>
+                            <span class="pf-error" id="err-Gender"></span>
+                        </div>
+                        <div class="pf-group">
+                            <label>السن</label>
+                            <input type="number" name="Age" id="inputAge" value="34" min="22" max="90" required>
+                            <span class="pf-error" id="err-Age"></span>
+                        </div>
+                    </div>
+
                     <div class="pf-group full-width">
                         <label>نبذة شخصية</label>
                         <textarea name="Bio" id="inputBio" rows="3"
-                            placeholder="اكتب نبذة مختصرة عنك تظهر في ملفك الشخصي...">طبيب متخصص في الطب العام مع خبرة 8 سنوات في تقديم الرعاية الصحية المنزلية.</textarea>
+                            placeholder="اكتب نبذة مختصرة عنك تظهر في ملفك الشخصي...">   خبرة 8 سنوات في تخصص طب المخ والاعصاب.</textarea>
                         <span class="pf-hint">سيظهر هذا النص في صفحة ملفك الشخصي للمرضى</span>
                     </div>
 
@@ -239,7 +258,7 @@
                         <div class="pf-group">
                             <label>المؤهل العلمي</label>
                             <input type="text" name="Qualification" id="inputQual"
-                                   value="بكالوريوس طب وجراحة — جامعة القاهرة">
+                                   value="بكالوريوس طب وجراحة المخ والاعصاب — جامعة القاهرة">
                         </div>
                     </div>
 
@@ -261,19 +280,6 @@
                         </div>
                         <input type="hidden" name="ServiceAreas" id="serviceAreasHidden" value="القاهرة,الجيزة,مصر الجديدة">
                         <span class="pf-hint">اضغط Enter لإضافة منطقة جديدة</span>
-                    </div>
-
-                    <div class="pf-row">
-                        <div class="pf-group full-width">
-                            <label>صورة الشهادة الطبية</label>
-                            <div class="pf-file-upload" id="certUploadArea">
-                                <i class="fa-solid fa-file-medical"></i>
-                                <span id="certFileName">رفع الشهادة</span>
-                                <label for="certInput">اختر ملف</label>
-                                <input type="file" id="certInput" name="MedicalCertificate"
-                                       accept="image/*,.pdf" style="display:none;">
-                            </div>
-                        </div>
                     </div>
 
                     <div class="pf-group full-width">
@@ -412,6 +418,68 @@
                 </form>
             </div>
 
+            <div class="profile-tab-content" id="tab-documents">
+
+                <div class="docs-grid">
+
+                    <div class="doc-card">
+                        <div class="doc-icon-wrap cert-icon"><i class="fa-solid fa-file-medical"></i></div>
+                        <div class="doc-info">
+                            <h4>الشهادة الطبية</h4>
+                            <p class="doc-status missing" id="docCert">
+                                <i class="fa-solid fa-circle-xmark"></i> لم يرفع بعد
+                            </p>
+                        </div>
+                        <div class="doc-actions">
+                            <button class="doc-btn view" id="certViewBtn" title="عرض الشهادة"
+                                    onclick="viewCert()" style="display:none;">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <label class="doc-btn edit" title="رفع / تحديث" for="certInput">
+                                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                            </label>
+                            <input type="file" id="certInput" name="MedicalCertificate"
+                                   accept="image/*,.pdf" style="display:none;">
+                        </div>
+                    </div>
+
+                    <div class="doc-card">
+                        <div class="doc-icon-wrap id-icon"><i class="fa-solid fa-id-card"></i></div>
+                        <div class="doc-info">
+                            <h4>بطاقة الرقم القومي</h4>
+                            <p class="doc-status missing" id="docNationalId">
+                                <i class="fa-solid fa-circle-xmark"></i> لم يرفع بعد
+                            </p>
+                        </div>
+                        <div class="doc-actions">
+                            <button class="doc-btn view" id="idViewBtn" title="عرض البطاقة (وجه + ظهر)"
+                                    onclick="viewNationalId()" style="display:none;">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <label class="doc-btn edit" title="تحديث (وجه + ظهر)" for="idCardInput">
+                                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                            </label>
+                            <input type="file" id="idCardInput" name="NationalId"
+                                   accept="image/*" multiple style="display:none;">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="doc-modal-overlay" id="docModalOverlay" onclick="closeDocModal(event)">
+                <div class="doc-modal" id="docModal">
+                    <div class="doc-modal-header">
+                        <span id="docModalTitle">عرض المستند</span>
+                        <button class="doc-modal-close" onclick="closeDocModal()">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="doc-modal-body" id="docModalBody"></div>
+                </div>
+            </div>
+
         </div>
     </div>
         <div class="content">
@@ -436,7 +504,7 @@
                     <div class="stat-card">
                         <div class="stat-icon orange"><i class="fa-solid fa-hourglass-half"></i></div>
                         <div class="stat-info">
-                            <div class="stat-value">4</div>
+                            <div class="stat-value" id="stat-pending-value">4</div>
                             <div class="stat-label">قيد الانتظار</div>
                             <div class="stat-change down">طلبات جديدة</div>
                         </div>
@@ -565,10 +633,10 @@
                             <input type="text" placeholder="بحث عن مريض..." oninput="filterTable(this,'new-visits-tbody')">
                         </div>
                         <select class="filter-select" onchange="filterNewVisits(this)">
-                            <option>كل الحالات</option>
-                            <option>قيد الانتظار</option>
-                            <option>مؤكدة</option>
-                            <option>ملغية</option>
+                            <option value="all">كل الحالات</option>
+                            <option value="pending">قيد الانتظار</option>
+                            <option value="confirmed">مؤكدة</option>
+                            <option value="cancelled">ملغية</option>
                         </select>
                     </div>
                     <div style="overflow-x:auto;">
@@ -576,63 +644,72 @@
                         <thead>
                             <tr>
                                 <th>اسم المريض</th>
-                                <th>عنوان المريض</th>
+                                <th>العنوان</th>
                                 <th>موعد الزيارة</th>
+                                <th>رقم الهاتف</th>
                                 <th>نوع الزيارة</th>
+                                <th>الحالة المرضية</th>
                                 <th>الحالة</th>
-                                <th></th>
-                                <th>البطاقة الشخصية</th>
-
-                           </tr>
+                                <th>الإجراء</th>
+                                <th>البطاقة الرقم القومي</th>
+                            </tr>
                         </thead>
                         <tbody id="new-visits-tbody">
-                            <tr data-status="pending">
+                            <tr id="row-nv-1" data-status="pending">
                                 <td>حسين التوني</td>
                                 <td>القاهرة</td>
-                                <td>2026-04-10 11:30</td>
+                                <td>2026-04-17 11:30</td>
+                                <td>01245555044</td>
                                 <td>متابعة</td>
+                                <td>ارتفاع في ضغط الدم</td>
                                 <td><span class="status-badge pending">قيد الانتظار</span></td>
                                 <td>
                                     <button class="action-btn accept" onclick="acceptVisit(this)">قبول</button>
                                     <button class="action-btn reject" onclick="rejectVisit(this)">رفض</button>
                                 </td>
-                                <td><a href="#" class="id-card-link"><i class="fa-solid fa-id-card"></i> عرض</a></td>
+                                <td><a href="javascript:void(0)" class="id-card-link"><i class="fa-solid fa-id-card"></i> عرض</a></td>
                             </tr>
-                            <tr data-status="pending">
+                            <tr id="row-nv-2" data-status="pending">
                                 <td>خالد مختار</td>
                                 <td>مصر الجديدة</td>
-                                <td>2026-04-10 11:30</td>
+                                <td>2026-04-18 11:00</td>
+                                <td>01175055474</td>
                                 <td>كشف</td>
+                                <td>صداع مزمن وتوتر عضلي</td>
                                 <td><span class="status-badge pending">قيد الانتظار</span></td>
                                 <td>
                                     <button class="action-btn accept" onclick="acceptVisit(this)">قبول</button>
                                     <button class="action-btn reject" onclick="rejectVisit(this)">رفض</button>
                                 </td>
-                                <td><a href="#" class="id-card-link"><i class="fa-solid fa-id-card"></i> عرض</a></td>
+                                <td><a href="javascript:void(0)" class="id-card-link"><i class="fa-solid fa-id-card"></i> عرض</a></td>
                             </tr>
-                            <tr data-status="pending">
+                            <tr id="row-nv-3" data-status="pending">
                                 <td>خالد محمود</td>
                                 <td>الشيخ زايد</td>
-                                <td>2026-04-01 11:30</td>
+                                <td>2026-04-17 10:30</td>
+                                <td>01001725474</td>
                                 <td>كشف</td>
+                                <td>دوخة وفقدان توازن متكرر</td>
                                 <td><span class="status-badge pending">قيد الانتظار</span></td>
                                 <td>
                                     <button class="action-btn accept" onclick="acceptVisit(this)">قبول</button>
                                     <button class="action-btn reject" onclick="rejectVisit(this)">رفض</button>
                                 </td>
-                                <td><a href="#" class="id-card-link"><i class="fa-solid fa-id-card"></i> عرض</a></td>
+                                <td><a href="javascript:void(0)" class="id-card-link"><i class="fa-solid fa-id-card"></i> عرض</a></td>
                             </tr>
-                            <tr data-status="pending">
-                                <td>محمد احمد</td>
+                            <tr id="row-nv-4" data-status="pending">
+                                <td>محمد أحمد</td>
                                 <td>الدقي</td>
-                                <td>2026-01-10 08:30</td>
+                                <td>2026-04-17 13:30</td>
+                                <td>01045557704</td>
                                 <td>كشف</td>
+                                <td>تنميل في الأطراف اليسرى</td>
                                 <td><span class="status-badge pending">قيد الانتظار</span></td>
                                 <td>
                                     <button class="action-btn accept" onclick="acceptVisit(this)">قبول</button>
                                     <button class="action-btn reject" onclick="rejectVisit(this)">رفض</button>
                                 </td>
-                                <td><a href="#" class="id-card-link"><i class="fa-solid fa-id-card"></i> عرض</a></td>
+                                <td><a href="javascript:void(0)" class="id-card-link"><i class="fa-solid fa-id-card"></i> عرض</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -655,6 +732,7 @@
                         </select>
                         <select class="filter-select" id="historyStatusFilter" onchange="filterHistoryTable()">
                             <option value="all">كل الحالات</option>
+                            <option value="confirmed">مؤكدة</option>
                             <option value="completed">مكتملة</option>
                             <option value="cancelled">ملغية</option>
                         </select>
@@ -680,7 +758,7 @@
                                 <td>01012345678</td>
                                 <td>2026-04-05 11:00</td>
                                 <td>جلطة بسيطة في اليد</td>
-                                <td><span class="status-badge confirmed">مكتملة</span></td>
+                                <td><span class="status-badge completed">مكتملة</span></td>
                             </tr>
 
                             <tr data-status="completed" data-date="2026-04-07">
@@ -690,7 +768,7 @@
                                 <td>01098765432</td>
                                 <td>2026-04-07 07:30</td>
                                 <td>ارتفاع في ضغط الدم</td>
-                                <td><span class="status-badge confirmed">مكتملة</span></td>
+                                <td><span class="status-badge completed">مكتملة</span></td>
                             </tr>
                             <tr data-status="cancelled" data-date="2026-02-09">
                                 <td>3</td>
@@ -708,7 +786,7 @@
                                 <td>01012312312</td>
                                 <td>2026-01-05 09:00</td>
                                 <td>ارتفاع في ضغط الدم</td>
-                                <td><span class="status-badge confirmed">مكتملة</span></td>
+                                <td><span class="status-badge completed">مكتملة</span></td>
                             </tr>
                             <tr data-status="completed" data-date="2026-01-07">
                                 <td>5</td>
@@ -717,7 +795,7 @@
                                 <td>01099887766</td>
                                 <td>2026-01-07 08:30</td>
                                 <td>ارتفاع في ضغط الدم</td>
-                                <td><span class="status-badge confirmed">مكتملة</span></td>
+                                <td><span class="status-badge completed">مكتملة</span></td>
                             </tr>
                             <tr data-status="cancelled" data-date="2026-03-07">
                                 <td>6</td>
@@ -735,7 +813,16 @@
                                 <td>01033221100</td>
                                 <td>2026-04-05 02:30</td>
                                 <td>جلطة بالقدم اليسرى</td>
-                                <td><span class="status-badge confirmed">مكتملة</span></td>
+                                <td><span class="status-badge completed">مكتملة</span></td>
+                            </tr>
+                            <tr data-status="confirmed" data-date="2026-04-11">
+                                <td>7</td>
+                                <td>نبيل عبدالفتاح</td>
+                                <td>المنيب</td>
+                                <td>01033221100</td>
+                                <td>2026-04-05 02:30</td>
+                                <td>جلطة بالقدم اليسرى</td>
+                                <td><span class="status-badge confirmed">مؤكدة</span></td>
                             </tr>
                         </tbody>
                     </table>

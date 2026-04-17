@@ -1361,7 +1361,7 @@ body.dark-mode .empty-state i {
     }
  
     .success-modal h2 {
-        font-size: 16px;
+        font-size: 18px !important;
     }
  
     .success-modal p {

@@ -15,7 +15,7 @@
 <header class="header">
     <div class="middle-header">
         <div class="logo">
-            <a href="index.html"><img src="assets/logo.png" alt="شعار زيارة"></a>
+            <a href="patientHome.html"><img src="assets/logo.png" alt="شعار زيارة"></a>
         </div>
         <div class="search" style="flex:1; display:flex; justify-content:center; margin:0 20px;">
             <input type="text" placeholder="ابحث عن طبيب أو خدمة..." autocomplete="off">
@@ -166,7 +166,6 @@
                                 <option value="male" selected>ذكر</option>
                                 <option value="female">أنثى</option>
                             </select>
-                            <i class="fa-solid fa-chevron-down dropdown-icon"></i>
                         </div>
                     </div>
                     <div class="input-group full-width">
@@ -244,75 +243,55 @@
             </div>
 
             <div class="ins-status-card" id="insStatusCard">
+                <div class="ins-status-icon has-ins"><i class="fa-solid fa-shield-halved"></i></div>
                 <div class="ins-status-text">
                     <h3 id="insStatusTitle">التأمين مسجل</h3>
                 </div>
-
+                <div class="ins-status-img">
+                    <img src="assets/image/كارنيه الـتأمين.jpg" alt="كارنيه التأمين">
+                </div> 
             </div>
 
-            <div class="ins-form-wrap" id="insFormWrap" style="display:none;">
-                <form class="profile-form" id="insForm" onsubmit="saveInsurance(event)">
-                    <div class="form-grid">
-                        <div class="input-group full-width">
-                            <label> رقم كارنيه التأمين</label>
-                            <input type="text" id="insNumber" placeholder="أدخل رقم الكارنيه">
-                        </div>
-                        <div class="input-group">
-                            <label> تاريخ الإصدار</label>
-                            <input type="date" id="insIssue">
-                        </div>
-                        <div class="input-group">
-                            <label> تاريخ الانتهاء</label>
-                            <input type="date" id="insExpiry">
-                        </div>
-                        <div class="input-group full-width">
-                            <label> صورة كارنيه التأمين</label>
-                            <div class="file-upload" onclick="document.getElementById('insFile').click()">
-                                <i class="fa-solid fa-cloud-arrow-up" style="font-size:22px; color:#128CCF; display:block; margin-bottom:6px;"></i>
-                                <span id="insFileName">اضغط لرفع صورة الكارنيه</span>
-                                <input type="file" id="insFile" accept="image/*" style="display:none;" onchange="updateFileName(this,'insFileName')">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="save-btn">
-                            <i class="fa-solid fa-floppy-disk"></i> حفظ بيانات التأمين
-                        </button>
-                        <button type="button" class="cancel-btn" onclick="toggleInsForm()">إلغاء</button>
-                    </div>
-                </form>
-            </div>
+
         </section>
 
         <section class="profile-panel" id="tab-documents">
             <div class="section-header">
-                <div>
-                    <h2>المستندات</h2>
-                </div>
+                <div><h2>المستندات</h2></div>
             </div>
 
             <div class="docs-grid">
                 <div class="doc-card">
+                    <div class="doc-icon-wrap"><i class="fa-solid fa-id-card"></i></div>
                     <div class="doc-info">
                         <h4>بطاقة الرقم القومي</h4>
-                        <p class="doc-status uploaded" id="docNationalId"><i class="fa-solid fa-circle-check"></i> تم الرفع</p>
+                        <p class="doc-status uploaded" id="docNationalId">
+                            <i class="fa-solid fa-circle-check"></i> تم الرفع (وجه + ظهر)
+                        </p>
                     </div>
                     <div class="doc-actions">
-                        <button class="doc-btn view" title="عرض"><i class="fa-solid fa-eye"></i></button>
-                        <label class="doc-btn edit" title="تحديث" for="newIdFile">
+                        <button class="doc-btn view" title="عرض" onclick="viewNationalId()">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                        <label class="doc-btn edit" title="تحديث (وجه + ظهر)" for="newIdFiles">
                             <i class="fa-solid fa-arrow-up-from-bracket"></i>
                         </label>
-                        <input type="file" id="newIdFile" accept="image/*" style="display:none;">
+                        <input type="file" id="newIdFiles" accept="image/*" multiple style="display:none;">
                     </div>
                 </div>
 
                 <div class="doc-card">
+                    <div class="doc-icon-wrap ins-icon"><i class="fa-solid fa-shield-halved"></i></div>
                     <div class="doc-info">
                         <h4>كارنيه التأمين</h4>
-                        <p class="doc-status uploaded" id="docInsuranceCard"><i class="fa-solid fa-circle-check"></i> تم الرفع</p>
+                        <p class="doc-status uploaded" id="docInsuranceCard">
+                            <i class="fa-solid fa-circle-check"></i> تم الرفع
+                        </p>
                     </div>
                     <div class="doc-actions">
-                        <button class="doc-btn view" title="عرض"><i class="fa-solid fa-eye"></i></button>
+                        <button class="doc-btn view" title="عرض" onclick="viewInsuranceCard()">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
                         <label class="doc-btn edit" title="تحديث" for="newInsFile">
                             <i class="fa-solid fa-arrow-up-from-bracket"></i>
                         </label>
@@ -321,20 +300,42 @@
                 </div>
 
                 <div class="doc-card">
+                    <div class="doc-icon-wrap med-icon"><i class="fa-solid fa-file-medical"></i></div>
                     <div class="doc-info">
                         <h4>التقارير الطبية</h4>
-                        <p class="doc-status missing" id="docMedicalReports"><i class="fa-solid fa-circle-xmark"></i> لم يرفع بعد</p>
+                        <p class="doc-status missing" id="docMedicalReports">
+                            <i class="fa-solid fa-circle-xmark"></i> لم يرفع بعد
+                        </p>
                     </div>
                     <div class="doc-actions">
-                        <label class="doc-btn edit" title="رفع" for="newMedFile">
+                        <button class="doc-btn view" id="medViewBtn" title="عرض الملفات"
+                                onclick="viewMedicalReports()" style="display:none;">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                        <label class="doc-btn upload" title="رفع ملفات" for="newMedFiles">
                             <i class="fa-solid fa-cloud-arrow-up"></i>
                         </label>
-                        <input type="file" id="newMedFile" accept="image/*,application/pdf" style="display:none;">
+                        <input type="file" id="newMedFiles" multiple
+                               accept="image/*,application/pdf,.doc,.docx"
+                               style="display:none;">
                     </div>
                 </div>
+
             </div>
         </section>
 
+        <div class="doc-modal-overlay" id="docModalOverlay" onclick="closeDocModal(event)">
+            <div class="doc-modal" id="docModal">
+                <div class="doc-modal-header">
+                    <span id="docModalTitle">عرض المستند</span>
+                    <button class="doc-modal-close" onclick="closeDocModal()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="doc-modal-body" id="docModalBody">
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 
@@ -349,6 +350,8 @@
         <p>حقوق النشر والطبع محفوظه زيارة | &copy; 2026</p>
     </div>
 </footer>
+
+
 
 <script src="js/header.js"></script>
 <script src="js/profile.js"></script>

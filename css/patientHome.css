@@ -1817,7 +1817,7 @@ body.dark-mode .provider-name {
         font-size: 18px; 
     }
     h2 {
-        font-size: 20px !important;
+        font-size: 18px !important;
     }
     .w-btn-primary, .w-btn-outline {
         width: fit-content !important;
@@ -1923,8 +1923,22 @@ body.dark-mode .provider-name {
         right: -10px; 
     }
     .vh-header { 
-        flex-direction: column; 
-        align-items: flex-start; 
+        flex-direction: row; 
+        align-items :flex-start; 
+    }
+    .vh-filter-btn {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+    .vh-back-btn {
+        padding: 5px 10px 5px 5px;
+        font-size: 0px;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+    }
+    .vh-back-btn i{
+        font-size: 15px;
     }
 }
 
