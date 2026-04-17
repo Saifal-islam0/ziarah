@@ -71,7 +71,6 @@
             </div>
             <div class="user-dropdown" id="userDropdown">
                 <a href="profile.html" class="nav-active"><i class="fa-solid fa-user-circle"></i> الملف الشخصي</a>
-                <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> سجل الزيارات</a>
                 <div class="user-dropdown-divider"></div>
                 <a href="index.html" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</a>
             </div>
@@ -192,7 +191,7 @@
             </div>
 
             <form class="profile-form" id="securityForm" onsubmit="savePassword(event)">
-                <div class="form-grid" style="max-width:520px;">
+                <div class="form-grid">
                     <div class="input-group full-width">
                         <label> كلمة المرور الحالية</label>
                         <div class="password-wrapper">
@@ -246,11 +245,9 @@
 
             <div class="ins-status-card" id="insStatusCard">
                 <div class="ins-status-text">
-                    <h3 id="insStatusTitle">لا يوجد تأمين مسجل</h3>
+                    <h3 id="insStatusTitle">التأمين مسجل</h3>
                 </div>
-                <button class="add-ins-btn" onclick="toggleInsForm()">
-                     إضافة تأمين
-                </button>
+
             </div>
 
             <div class="ins-form-wrap" id="insFormWrap" style="display:none;">
@@ -291,16 +288,14 @@
             <div class="section-header">
                 <div>
                     <h2>المستندات</h2>
-
                 </div>
             </div>
 
             <div class="docs-grid">
                 <div class="doc-card">
-
                     <div class="doc-info">
                         <h4>بطاقة الرقم القومي</h4>
-                        <p class="doc-status uploaded"> تم الرفع</p>
+                        <p class="doc-status uploaded" id="docNationalId"><i class="fa-solid fa-circle-check"></i> تم الرفع</p>
                     </div>
                     <div class="doc-actions">
                         <button class="doc-btn view" title="عرض"><i class="fa-solid fa-eye"></i></button>
@@ -314,11 +309,12 @@
                 <div class="doc-card">
                     <div class="doc-info">
                         <h4>كارنيه التأمين</h4>
-                        <p class="doc-status missing"><i class="fa-solid fa-circle-xmark"></i> لم يرفع بعد</p>
+                        <p class="doc-status uploaded" id="docInsuranceCard"><i class="fa-solid fa-circle-check"></i> تم الرفع</p>
                     </div>
                     <div class="doc-actions">
-                        <label class="doc-btn edit" title="رفع" for="newInsFile">
-                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <button class="doc-btn view" title="عرض"><i class="fa-solid fa-eye"></i></button>
+                        <label class="doc-btn edit" title="تحديث" for="newInsFile">
+                            <i class="fa-solid fa-arrow-up-from-bracket"></i>
                         </label>
                         <input type="file" id="newInsFile" accept="image/*" style="display:none;">
                     </div>
@@ -327,7 +323,7 @@
                 <div class="doc-card">
                     <div class="doc-info">
                         <h4>التقارير الطبية</h4>
-                        <p class="doc-status missing"><i class="fa-solid fa-circle-xmark"></i> لم يرفع بعد</p>
+                        <p class="doc-status missing" id="docMedicalReports"><i class="fa-solid fa-circle-xmark"></i> لم يرفع بعد</p>
                     </div>
                     <div class="doc-actions">
                         <label class="doc-btn edit" title="رفع" for="newMedFile">

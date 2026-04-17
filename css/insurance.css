@@ -819,19 +819,24 @@ body.dark-mode .map-filter-btn.active {
 @media (max-width: 480px) {
     .insurance-hero {
         margin: 10px;
-        height: 200px;
+        padding: 30px 15px;
         border-radius: 5px;
     }
 
     .hero-content {
-        padding: 16px;
+        max-width: 100%;
+        padding: 25px 20px;
         display: flex;
+        text-align: center;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
     .hero-content h1 {
         font-size: 17px;
+    }
+    .line {
+        width: 300px;
     }
     .hero-content p {
         font-size: 13px;

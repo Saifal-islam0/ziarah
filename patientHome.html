@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الصفحة الرئيسية</title>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/patientHome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -61,21 +59,68 @@
             </div>
             <a href="requestVisit.html">طلب زيارة منزلية</a>
             <a href="insurance.html">تأمين اعضاء هيئة التدريس</a>
-            <a href="medicalTips.html">نصائح طبية</a>
+            <a href="mediCaltips.html">نصائح طبية</a>
             <a href="about.html">من نحن</a>
             <a href="contact.html">تواصل معنا</a>
         </nav>
+
         <div class="buttons">
+
+            <div class="notif-menu" id="notifMenu">
+                <button class="notif-btn" onclick="toggleNotifMenu()" aria-label="الإشعارات">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notif-badge" id="notifBadge">2</span>
+                </button>
+                <div class="notif-dropdown" id="notifDropdown">
+                    <div class="notif-dropdown-header">
+                        <span>الإشعارات</span>
+                        <button class="notif-mark-all" onclick="markAllRead()">تحديد الكل كمقروء</button>
+                    </div>
+                    <div class="notif-list" id="notifList">
+
+                        <div class="notif-item unread" onclick="markRead(this)">
+                            <div class="notif-icon confirmed"><i class="fa-solid fa-circle-check"></i></div>
+                            <div class="notif-body">
+                                <div class="notif-title">تم تأكيد زيارتك</div>
+                                <div class="notif-desc">زيارة د. خالد وليد — الأربعاء 17 أبريل 09:00 ص</div>
+                                <div class="notif-time">منذ 10 دقائق</div>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread" onclick="markRead(this)">
+                            <div class="notif-icon pending"><i class="fa-solid fa-clock"></i></div>
+                            <div class="notif-body">
+                                <div class="notif-title">في انتظار التأكيد</div>
+                                <div class="notif-desc">طلبك لـ أ. هالة مصطفى قيد المراجعة</div>
+                                <div class="notif-time">منذ ساعة</div>
+                            </div>
+                        </div>
+
+                        <div class="notif-item" onclick="markRead(this)">
+                            <div class="notif-icon cancelled"><i class="fa-solid fa-circle-xmark"></i></div>
+                            <div class="notif-body">
+                                <div class="notif-title">تم إلغاء الزيارة</div>
+                                <div class="notif-desc">زيارة د. سارة أحمد — 12 أبريل تم إلغاؤها</div>
+                                <div class="notif-time">منذ 4 أيام</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="notif-dropdown-footer">
+                        <a href="#" onclick="showVisitHistory(); closeNotifMenu();">عرض سجل الزيارات</a>
+                    </div>
+                </div>
+            </div>
+
            <div class="user-menu">
                 <div class="user-avatar" onclick="toggleUserMenu()">
                      <img src="assets/image/be7d92ded7de75fe6dc9fd4406e789ac22393930.png" alt="">
                     <span id="userName">محمد احمد</span>
-                    <i class="fa-solid fa-chevron-down" style="font-size:11px;"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 <div class="user-dropdown" id="userDropdown">
                     <a href="profile.html"><i class="fa-solid fa-user-pen"></i> الملف الشخصي</a>
-                    <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> سجل الزيارات</a>
-                    <a href="#"><i class="fa-solid fa-bell"></i> الإشعارات</a>
+                    <a href="#" onclick="showVisitHistory(); toggleUserMenu();"><i class="fa-solid fa-clock-rotate-left"></i> سجل الزيارات</a>
                     <div class="user-dropdown-divider"></div>
                     <a href="index.html" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</a>
                 </div>
@@ -203,14 +248,7 @@
 
     <div class="providers-scroll ">
 
-        <div class="provider-card"
-             data-type="doctor"
-             data-id="1"
-             data-name="د. محمد محمود"
-             data-spec="عظام"
-             data-price="500"
-             data-img="assets/image/mohamed.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card" data-type="doctor" data-id="1" data-name="د. محمد محمود" data-spec="عظام" data-price="500" data-img="assets/image/mohamed.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/mohamed.png" alt="د. محمد محمود">
                 <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -225,14 +263,7 @@
             </button>
         </div>
 
-        <div class="provider-card"
-             data-type="doctor"
-             data-id="1"
-             data-name="د. محمد محمود"
-             data-spec="عظام"
-             data-price="500"
-             data-img="assets/image/mohamed.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card" data-type="doctor" data-id="1" data-name="د. محمد محمود" data-spec="عظام" data-price="500" data-img="assets/image/mohamed.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/mohamed.png" alt="د. محمد محمود">
                 <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -247,14 +278,7 @@
             </button>
         </div>
 
-        <div class="provider-card"
-             data-type="doctor"
-             data-id="1"
-             data-name="د. محمد محمود"
-             data-spec="عظام"
-             data-price="500"
-             data-img="assets/image/mohamed.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card" data-type="doctor" data-id="1" data-name="د. محمد محمود" data-spec="عظام" data-price="500" data-img="assets/image/mohamed.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/mohamed.png" alt="د. محمد محمود">
                 <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -269,14 +293,7 @@
             </button>
         </div>
 
-        <div class="provider-card"
-             data-type="doctor"
-             data-id="1"
-             data-name="د. محمد محمود"
-             data-spec="عظام"
-             data-price="500"
-             data-img="assets/image/mohamed.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card" data-type="doctor" data-id="1" data-name="د. محمد محمود" data-spec="عظام" data-price="500" data-img="assets/image/mohamed.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/mohamed.png" alt="د. محمد محمود">
                 <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -291,14 +308,7 @@
             </button>
         </div>
 
-        <div class="provider-card"
-             data-type="doctor"
-             data-id="1"
-             data-name="د. محمد محمود"
-             data-spec="عظام"
-             data-price="500"
-             data-img="assets/image/mohamed.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card" data-type="doctor" data-id="1" data-name="د. محمد محمود" data-spec="عظام" data-price="500" data-img="assets/image/mohamed.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/mohamed.png" alt="د. محمد محمود">
                 <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -313,14 +323,7 @@
             </button>
         </div>
 
-        <div class="provider-card"
-             data-type="doctor"
-             data-id="1"
-             data-name="د. محمد محمود"
-             data-spec="عظام"
-             data-price="500"
-             data-img="assets/image/mohamed.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card" data-type="doctor" data-id="1" data-name="د. محمد محمود" data-spec="عظام" data-price="500" data-img="assets/image/mohamed.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/mohamed.png" alt="د. محمد محمود">
                 <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -335,14 +338,7 @@
             </button>
         </div>
 
-        <div class="provider-card"
-             data-type="doctor"
-             data-id="1"
-             data-name="د. محمد محمود"
-             data-spec="عظام"
-             data-price="500"
-             data-img="assets/image/mohamed.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card" data-type="doctor" data-id="1" data-name="د. محمد محمود" data-spec="عظام" data-price="500" data-img="assets/image/mohamed.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/mohamed.png" alt="د. محمد محمود">
                 <span class="provider-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -372,14 +368,7 @@
 
     <div class="providers-scroll">
 
-        <div class="provider-card nurse-card"
-             data-type="nurse"
-             data-id="10"
-             data-name="أ. هالة مصطفى"
-             data-spec="تمريض"
-             data-price="200"
-             data-img="assets/image/sara.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card nurse-card" data-type="nurse" data-id="10" data-name="أ. هالة مصطفى" data-spec="تمريض" data-price="200" data-img="assets/image/sara.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
                 <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -393,14 +382,7 @@
             </button>
         </div>
 
-        <div class="provider-card nurse-card"
-             data-type="nurse"
-             data-id="10"
-             data-name="أ. هالة مصطفى"
-             data-spec="تمريض"
-             data-price="200"
-             data-img="assets/image/sara.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card nurse-card" data-type="nurse" data-id="10" data-name="أ. هالة مصطفى" data-spec="تمريض" data-price="200" data-img="assets/image/sara.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
                 <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -414,14 +396,7 @@
             </button>
         </div>
 
-        <div class="provider-card nurse-card"
-             data-type="nurse"
-             data-id="10"
-             data-name="أ. هالة مصطفى"
-             data-spec="تمريض"
-             data-price="200"
-             data-img="assets/image/sara.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card nurse-card" data-type="nurse" data-id="10" data-name="أ. هالة مصطفى" data-spec="تمريض" data-price="200" data-img="assets/image/sara.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
                 <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -434,14 +409,7 @@
                 طلب زيارة الآن
             </button>
         </div>
-        <div class="provider-card nurse-card"
-             data-type="nurse"
-             data-id="10"
-             data-name="أ. هالة مصطفى"
-             data-spec="تمريض"
-             data-price="200"
-             data-img="assets/image/sara.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card nurse-card" data-type="nurse" data-id="10" data-name="أ. هالة مصطفى" data-spec="تمريض" data-price="200" data-img="assets/image/sara.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
                 <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -454,14 +422,7 @@
                 طلب زيارة الآن
             </button>
         </div>
-        <div class="provider-card nurse-card"
-             data-type="nurse"
-             data-id="10"
-             data-name="أ. هالة مصطفى"
-             data-spec="تمريض"
-             data-price="200"
-             data-img="assets/image/sara.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card nurse-card" data-type="nurse" data-id="10" data-name="أ. هالة مصطفى" data-spec="تمريض" data-price="200" data-img="assets/image/sara.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
                 <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -474,14 +435,7 @@
                 طلب زيارة الآن
             </button>
         </div>
-        <div class="provider-card nurse-card"
-             data-type="nurse"
-             data-id="10"
-             data-name="أ. هالة مصطفى"
-             data-spec="تمريض"
-             data-price="200"
-             data-img="assets/image/sara.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card nurse-card" data-type="nurse" data-id="10" data-name="أ. هالة مصطفى" data-spec="تمريض" data-price="200" data-img="assets/image/sara.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
                 <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -494,14 +448,7 @@
                 طلب زيارة الآن
             </button>
         </div>
-        <div class="provider-card nurse-card"
-             data-type="nurse"
-             data-id="10"
-             data-name="أ. هالة مصطفى"
-             data-spec="تمريض"
-             data-price="200"
-             data-img="assets/image/sara.png"
-             onclick="window.location.href='doctorProfile.html'">
+        <div class="provider-card nurse-card" data-type="nurse" data-id="10" data-name="أ. هالة مصطفى" data-spec="تمريض" data-price="200" data-img="assets/image/sara.png" onclick="window.location.href='doctorProfile.html'">
             <div class="provider-img">
                 <img src="assets/image/sara.png" alt="أ. هالة مصطفى">
                 <span class="provider-rating nurse-rating"><i class="fa-solid fa-star"></i> 4.9</span>
@@ -519,7 +466,6 @@
     <a href="requestVisit.html" class="see-all-link">عرض الكل <i class="fa-solid fa-arrow-left"></i></a>
 
 </section>
-
 
 <section class="insurance-section">
     <div class="insurance-section-inner">
@@ -543,99 +489,273 @@
     <div class="insurance-img">
         <img src="assets/image/vecteezy_hospital-building-with-ambulance-isolated-on-a-transparent_51338414.png" alt="صورة مستشفيات">
     </div>      
+
     </div>
 </section>
-<div class="overlay" id="bookingOverlay" onclick="closeBookingIfOutside(event)">
+<div class="overlay" id="bookingOverlay">
     <div class="booking-modal">
+
         <div class="booking-modal-header">
-            <div class="booking-modal-title">
-                طلب زيارة
-            </div>
+            <div class="booking-modal-title" >طلب زيارة</div>
             <button class="booking-close-btn" onclick="closeBookingModal()">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-
         </div>
 
-        <div class="booking-provider-info" id="bookingDoctorInfo">
+        <div class="booking-provider-info">
             <div class="booking-provider-img">
-                <img src="assets/image/mohamed.png" alt="">
+                <img id="bookingProviderImg" src="" alt="">
             </div>
             <div>
-                <div class="booking-provider-name">محمد محمود</div>
-                <div class="booking-provider-spec">عظام</div>
-                <div class="booking-provider-price">سعر الكشف 500 جنيه</div>
+                <div class="booking-provider-name" id="bookingProviderName"></div>
+                <div class="booking-provider-spec" id="bookingProviderSpec"></div>
+                <div class="booking-provider-price" id="bookingProviderPrice"></div>
             </div>
+        </div>
+
+        <div class="booking-source-toggle">
+            <button class="source-btn source-btn-account active" id="btnUseAccount" onclick="switchBookingSource('account')">
+                <i class="fa-solid fa-user-check"></i>
+                بيانات حسابي
+            </button>
+            <button class="source-btn source-btn-new" id="btnUseNew" onclick="switchBookingSource('new')">
+                <i class="fa-solid fa-user-plus"></i>
+                بيانات جديدة
+            </button>
+        </div>
+
+        <div class="booking-account-preview" id="bookingAccountPreview">
+            <div class="account-preview-row">
+                <span class="account-preview-label"><i class="fa-solid fa-user"></i> الاسم</span>
+
+                <span class="account-preview-value" id="previewName">محمد أحمد</span>
+            </div>
+            <div class="account-preview-row">
+                <span class="account-preview-label"><i class="fa-solid fa-phone"></i> الهاتف</span>
+
+                <span class="account-preview-value" id="previewPhone">01012345678</span>
+            </div>
+            <div class="account-preview-row">
+                <span class="account-preview-label"><i class="fa-solid fa-location-dot"></i> العنوان</span>
+
+                <span class="account-preview-value" id="previewAddress">بني سويف - شارع الجمهورية</span>
+            </div>
+            <div class="account-preview-row">
+                <span class="account-preview-label"><i class="fa-solid fa-envelope"></i> الإيميل</span>
+
+                <span class="account-preview-value" id="previewEmail">mohamed@gmail.com</span>
+            </div>
+            <a href="profile.html" class="account-edit-link">
+                <i class="fa-solid fa-pen-to-square"></i> تعديل بياناتي
+            </a>
         </div>
 
         <form id="bookingForm">
-            <input type="hidden" name="doctorId" id="bookingDoctorId">
-            <input type="hidden" name="visitType" id="bookingVisitType" value="doctor">
-            <div class="double-input">
-                <div class="input-group">
-                    <label>الاسم بالكامل</label>
-                    <input type="text" name="fullName" placeholder="" required>
+            <input type="hidden" name="providerId"  id="bookingProviderId">
+            <input type="hidden" name="visitType"   id="bookingVisitType" value="doctor">
+            <input type="hidden" name="useAccount"  id="bookingUseAccount" value="true">
+
+            <div class="booking-new-fields" id="bookingNewFields" style="display:none;">
+                <div class="double-input">
+                    <div class="input-group">
+                        <label>الاسم بالكامل</label>
+                        <input type="text" name="fullName" id="fieldFullName" placeholder="الاسم رباعي">
+                    </div>
+                    <div class="input-group">
+                        <label>رقم الهاتف</label>
+                        <input type="text" name="phone" id="fieldPhone" placeholder="01xxxxxxxxx">
+                    </div>
                 </div>
                 <div class="input-group">
-                    <label>رقم الهاتف للتواصل</label>
-                    <input type="text" name="phone" placeholder="01xxxxxxxxx" required>
+                    <label>العنوان بالتفصيل</label>
+                    <input type="text" name="address" id="fieldAddress" placeholder="المحافظة - الحي - الشارع - رقم المبنى...">
+                </div>
+                <div class="input-group">
+                    <label>البريد الإلكتروني <span class="optional-label">(اختياري)</span></label>
+                    <input type="email" name="email" id="fieldEmail" placeholder="info@gmail.com">
+                </div>
+
+                <div class="input-group file-upload">
+                    <label for="nationalId" id="nationalIdLabel">
+                        رفع صورة بطاقة الرقم القومي
+                    </label>
+                    <input type="file" id="nationalId" name="nationalId" accept="image/*" required>
                 </div>
             </div>
 
-            <div class="input-group">
-                <label>العنوان بالتفصيل</label>
-                <input type="text" name="address" placeholder="المحافظة - الحي - الشارع - رقم المبنى..." required>
-            </div>
-
             <div class="double-input">
-                <div class="input-group">
-                    <label>البريد الإلكتروني</label>
-                    <input type="email" name="email" placeholder="info@gmail.com">
-                </div>
                 <div class="input-group">
                     <label>اختيار الموعد</label>
-                    <input type="datetime-local" name="datetime" required>
+                    <input type="datetime-local" name="datetime" id="fieldDatetime" required>
+                </div>
+                <div class="input-group">
+                    <label>الحالة المرضية</label>
+                    <input type="text" name="condition" id="fieldCondition" placeholder="اذكر الأعراض...">
                 </div>
             </div>
 
             <div class="input-group">
-                <label>الحالة المرضية</label>
-                <input type="text" name="condition" placeholder="اذكر الأعراض أو الحالة التي تحتاج رعاية..." required>
-            </div>
-
-            <div class="input-group file-upload">
-                <label for="nationalId" id="nationalIdLabel">
-                     رفع صورة بطاقة الرقم القومي
-                </label>
-                <input type="file" id="nationalId" name="nationalId" accept="image/*" required>
-            </div>
-
-            <div class="input-group">
-                <label>ملاحظات إضافية <span style="color:#aaa;font-weight:400">(اختياري)</span></label>
+                <label>ملاحظات إضافية <span class="optional-label">(اختياري)</span></label>
                 <textarea name="notes" placeholder="أي معلومات إضافية تساعد الطبيب..."></textarea>
             </div>
 
             <div class="booking-form-footer">
                 <button type="submit" class="submit-btn">
-                    طلب الآن
+                    <i class="fa-solid fa-paper-plane"></i> طلب الآن
                 </button>
-                <a href="register.html" class="register-link">
-                     إنشاء حساب | حتي لا تحتاج لإدخال البيانات في المرة القادمة
-                </a>
             </div>
         </form>
+
     </div>
 </div>
-<div class="overlay" id="successOverlay" onclick="if(event.target===this) closeSuccessModal()">
+
+<div class="overlay" id="successOverlay">
     <div class="success-modal">
         <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
-        <h2>تم إرسال طلبك بنجاح!</h2>
-        <p>سيتواصل معك أحد ممثلينا في أقرب وقت لتأكيد الزيارة وتحديد الموعد</p>
-        <button onclick="closeSuccessModal()" style="margin-top:20px;padding:8px 30px;border:none;border-radius:28px;background:#128CCF;color:white;font-size:14px;font-weight:700;cursor:pointer;">
-            حسناً
-        </button>
+        <h2>تم إرسال طلبك بنجاح</h2>
+        <p>سيتواصل معك أحد ممثلينا في أقرب وقت لتأكيد الزيارة </p>
+        <button onclick="closeSuccessModal()">حسناً</button>
     </div>
 </div>
+
+<!-- سكشن السجل -->
+<section class="visit-history-section" id="visitHistorySection" style="display:none;">
+    <div class="visit-history-inner">
+
+        <div class="vh-header">
+            <div>
+                <h2><i class="fa-solid fa-clock-rotate-left"></i> سجل زياراتي</h2>
+                <div class="section-line"></div>
+            </div>
+            <button class="vh-back-btn" onclick="hideVisitHistory()">
+                <i class="fa-solid fa-arrow-right"></i> العودة للرئيسية
+            </button>
+        </div>
+
+        <div class="vh-filters">
+            <button class="vh-filter-btn active" onclick="filterVisits('all', this)">الكل</button>
+            <button class="vh-filter-btn" onclick="filterVisits('confirmed', this)">مؤكدة</button>
+            <button class="vh-filter-btn" onclick="filterVisits('pending', this)">قيد الانتظار</button>
+            <button class="vh-filter-btn" onclick="filterVisits('completed', this)">منتهية</button>
+            <button class="vh-filter-btn" onclick="filterVisits('cancelled', this)">ملغاة</button>
+        </div>
+
+        <div class="vh-list" id="vhList">
+
+
+            <div class="vh-card" data-visit-id="101" data-status="confirmed">
+                <div class="vh-card-img"><img src="assets/image/khaled.jpg" alt="د. خالد وليد"></div>
+                <div class="vh-card-info">
+                    <div class="vh-card-name">د. خالد وليد</div>
+                    <div class="vh-card-meta">
+                        <span>باطنة</span>
+                        <span><i class="fa-solid fa-calendar"></i> 2026-4-17</span>
+                        <span><i class="fa-solid fa-clock"></i> 09:00 ص</span>
+                        <span><i class="fa-solid fa-location-dot"></i> بني سويف - شارع الجمهورية</span>
+                        <span><i class="fa-solid fa-briefcase-medical"></i> 500 جنيه</span>
+                    </div>
+                </div>
+                <span class="vh-card-status vh-status-confirmed">مؤكدة</span>
+                <div class="vh-card-actions">
+                    <button class="vh-action-btn cancel-btn" onclick="cancelVisit(this)">
+                        <i class="fa-solid fa-xmark"></i> إلغاء
+                    </button>
+                </div>
+            </div>
+
+            <div class="vh-card" data-visit-id="102" data-status="pending">
+                <div class="vh-card-img"><img src="assets/image/sara.png" alt="أ. هالة مصطفى"></div>
+                <div class="vh-card-info">
+                    <div class="vh-card-name">أ. هالة مصطفى</div>
+                    <div class="vh-card-meta">
+                        <span>تمريض</span>
+                        <span><i class="fa-solid fa-calendar"></i> 2026-4-18</span>
+                        <span><i class="fa-solid fa-clock"></i> 02:00 م</span>
+                        <span><i class="fa-solid fa-location-dot"></i> بني سويف - حي الجامعة</span>
+                        <span><i class="fa-solid fa-briefcase-medical"></i> 200 جنيه</span>
+                    </div>
+                </div>
+                <span class="vh-card-status vh-status-pending">قيد الانتظار</span>
+                <div class="vh-card-actions">
+                    <button class="vh-action-btn" onclick="editVisit(this)">
+                        <i class="fa-solid fa-pen"></i> تعديل
+                    </button>
+                    <button class="vh-action-btn cancel-btn" onclick="cancelVisit(this)">
+                        <i class="fa-solid fa-xmark"></i> إلغاء
+                    </button>
+                </div>
+            </div>
+
+            <div class="vh-card" data-visit-id="103" data-status="completed">
+                <div class="vh-card-img"><img src="assets/image/khaled.jpg" alt="د. خالد علام"></div>
+                <div class="vh-card-info">
+                    <div class="vh-card-name">د. خالد علام</div>
+                    <div class="vh-card-meta">
+                        <span>مخ وأعصاب</span>
+                        <span><i class="fa-solid fa-calendar"></i> 2026-4-10</span>
+                        <span><i class="fa-solid fa-clock"></i> 11:00 ص</span>
+                        <span><i class="fa-solid fa-location-dot"></i> بني سويف - شارع النيل</span>
+                        <span><i class="fa-solid fa-briefcase-medical"></i> 500 جنيه</span>
+                    </div>
+                </div>
+                <span class="vh-card-status vh-status-completed">منتهية</span>
+                <div class="vh-card-actions">
+                    <button class="vh-action-btn" onclick="rebookVisit(this)">
+                        <i class="fa-solid fa-rotate-right"></i> إعادة الحجز
+                    </button>
+                </div>
+            </div>
+
+            <div class="vh-card" data-visit-id="104" data-status="cancelled">
+                <div class="vh-card-img"><img src="assets/image/sara.png" alt="د. سارة أحمد"></div>
+                <div class="vh-card-info">
+                    <div class="vh-card-name">د. سارة أحمد</div>
+                    <div class="vh-card-meta">
+                        <span>باطنة</span>
+                        <span><i class="fa-solid fa-calendar"></i> 2026-4-12</span>
+                        <span><i class="fa-solid fa-clock"></i> 09:00 ص</span>
+                        <span><i class="fa-solid fa-location-dot"></i> بني سويف - المنطقة المركزية</span>
+                        <span><i class="fa-solid fa-briefcase-medical"></i> 700 جنيه</span>
+                    </div>
+                </div>
+                <span class="vh-card-status vh-status-cancelled">ملغاة</span>
+                <div class="vh-card-actions">
+                    <button class="vh-action-btn" onclick="rebookVisit(this)">
+                        <i class="fa-solid fa-rotate-right"></i> إعادة الحجز
+                    </button>
+                </div>
+            </div>
+
+            <div class="vh-card" data-visit-id="105" data-status="completed">
+                <div class="vh-card-img"><img src="assets/image/saad.JPG" alt="د. سعد علواني"></div>
+                <div class="vh-card-info">
+                    <div class="vh-card-name">د. سعد علواني</div>
+                    <div class="vh-card-meta">
+                        <span>مخ واعصاب</span>
+                        <span><i class="fa-solid fa-calendar"></i> 2026-4-16</span>
+                        <span><i class="fa-solid fa-clock"></i> 13:00</span>
+                        <span><i class="fa-solid fa-location-dot"></i> بني سويف - شارع الجمهورية</span>
+                        <span><i class="fa-solid fa-briefcase-medical"></i> 650 جنيه</span>
+                    </div>
+                </div>
+                <span class="vh-card-status vh-status-completed">منتهية</span>
+                <div class="vh-card-actions">
+                    <button class="vh-action-btn" onclick="rebookVisit(this)">
+                        <i class="fa-solid fa-rotate-right"></i> إعادة الحجز
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        
+
+        <div class="vh-empty" id="vhEmpty" style="display:none;">
+            <i class="fa-solid fa-calendar-xmark"></i>
+            <p>لا توجد زيارات بعد</p>
+        </div>
+
+    </div>
+</section>
 
 <footer>
     <div class="footer-small">
@@ -644,7 +764,6 @@
     </div>
 </footer>
 
-<script src="js/script.js"></script>
 <script src="js/header.js"></script>
 <script src="js/patientHome.js"></script>
 </body>

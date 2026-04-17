@@ -89,7 +89,6 @@
         <h1>طلب زيارة منزلية</h1>
         <div class="line"></div>
         <p>احصل على الرعاية الصحية في منزلك على يد نخبة من الأطباء والممرضين المتخصصين</p>
-
     </div>
 </section>
 
@@ -472,7 +471,7 @@
                 <img src="assets/image/mohamed.png" alt="">
             </div>
             <div>
-                <div class="booking-provider-name">محمد محمود</div>
+                <div class="booking-provider-name">محمد احمد</div>
                 <div class="booking-provider-spec">عظام</div>
                 <div class="booking-provider-price">سعر الكشف 500 جنيه</div>
             </div>
@@ -484,7 +483,7 @@
             <div class="double-input">
                 <div class="input-group">
                     <label>الاسم بالكامل</label>
-                    <input type="text" name="fullName" placeholder="" required>
+                    <input type="text" name="fullName" placeholder="الاسم رباعي" required>
                 </div>
                 <div class="input-group">
                     <label>رقم الهاتف للتواصل</label>
@@ -508,17 +507,19 @@
                 </div>
             </div>
 
-            <div class="input-group">
-                <label>الحالة المرضية</label>
-                <input type="text" name="condition" placeholder="اذكر الأعراض أو الحالة التي تحتاج رعاية..." required>
-            </div>
-
             <div class="input-group file-upload">
                 <label for="nationalId" id="nationalIdLabel">
                      رفع صورة بطاقة الرقم القومي
                 </label>
                 <input type="file" id="nationalId" name="nationalId" accept="image/*" required>
             </div>
+
+            <div class="input-group">
+                <label>الحالة المرضية</label>
+                <input type="text" name="condition" placeholder="اذكر الأعراض أو الحالة التي تحتاج رعاية..." required>
+            </div>
+
+
 
             <div class="input-group">
                 <label>ملاحظات إضافية <span style="color:#aaa;font-weight:400">(اختياري)</span></label>
@@ -542,8 +543,8 @@
         <div class="success-icon">
             <i class="fa-solid fa-circle-check"></i>
         </div>
-        <h2>تمت العملية بنجاح</h2>
-        <p>انتظر تأكيد الموعد على رسائل الواتساب<br>سنرسل إليك التفاصيل قريباً</p>
+        <h2>تم إرسال طلبك بنجاح</h2>
+        <p>سيتواصل معك أحد ممثلينا في أقرب وقت لتأكيد الزيارة </p>
         <button class="submit-btn" onclick="closeSuccessModal()" style="margin-top:20px; width:auto; padding:10px 40px;">
             حسناً
         </button>

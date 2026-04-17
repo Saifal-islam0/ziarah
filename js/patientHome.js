@@ -1,327 +1,356 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-    loadUserInfo();
+    initUserMenuClose();
     initEmergencyModal();
     initBookingModal();
     initFileUpload();
-    initSymptomCards();
-    initUserMenu();
-    loadVisitHistory();
+    initNotifBadge();
 });
 
 
-function loadUserInfo() {
 
-    const userNameEl  = document.getElementById("userName");
-    const userHeroEl  = document.getElementById("userNameHero");
-
-    if (userNameEl && !userNameEl.dataset.loaded && !userNameEl.textContent.trim()) {
-        userNameEl.textContent = "المستخدم";
-    }
-    if (userHeroEl && !userHeroEl.dataset.loaded && !userHeroEl.textContent.trim()) {
-        userHeroEl.textContent = "المستخدم";
-    }
-}
-
-
-function initUserMenu() {
-    // Close user dropdown when clicking outside
+function initUserMenuClose() {
     document.addEventListener("click", function (e) {
-        const menu = document.getElementById("userDropdown");
-        const avatar = document.querySelector(".user-avatar");
-        if (menu && menu.classList.contains("open")) {
-            if (!menu.contains(e.target) && !avatar.contains(e.target)) {
-                menu.classList.remove("open");
-            }
+        var userMenu = document.querySelector(".user-menu");
+        var userDD   = document.getElementById("userDropdown");
+        if (userDD && userMenu && !userMenu.contains(e.target)) {
+            userDD.classList.remove("open");
+        }
+        var notifMenu = document.getElementById("notifMenu");
+        var notifDD   = document.getElementById("notifDropdown");
+        if (notifDD && notifMenu && !notifMenu.contains(e.target)) {
+            notifDD.classList.remove("open");
         }
     });
 }
 
 window.toggleUserMenu = function () {
-    const dropdown = document.getElementById("userDropdown");
-    if (dropdown) dropdown.classList.toggle("open");
+    var dd = document.getElementById("userDropdown");
+    if (dd) dd.classList.toggle("open");
+};
+
+function getAccountData() {
+    if (window.CURRENT_USER) return window.CURRENT_USER;
+    return {
+        FullName : (document.getElementById("userName") || {}).textContent || "المستخدم",
+        Phone    : "01012345678",
+        Address  : "بني سويف - شارع الجمهورية",
+        Email    : "user@gmail.com"
+    };
+}
+
+
+function initNotifBadge() {
+    updateNotifBadge();
+}
+
+function updateNotifBadge() {
+    var badge = document.getElementById("notifBadge");
+    if (!badge) return;
+    var count = document.querySelectorAll("#notifList .notif-item.unread").length;
+    badge.textContent = count;
+    badge.classList.toggle("hidden", count === 0);
+}
+
+window.toggleNotifMenu = function () {
+    var dd = document.getElementById("notifDropdown");
+    if (dd) dd.classList.toggle("open");
+};
+
+window.closeNotifMenu = function () {
+    var dd = document.getElementById("notifDropdown");
+    if (dd) dd.classList.remove("open");
+};
+
+window.markRead = function (el) {
+    if (!el) return;
+    el.classList.remove("unread");
+    updateNotifBadge();
+};
+
+window.markAllRead = function () {
+    document.querySelectorAll("#notifList .notif-item.unread").forEach(function (item) {
+        item.classList.remove("unread");
+    });
+    updateNotifBadge();
+};
+
+
+
+var PAGE_SECTIONS = [".welcome-section", ".symptoms-section", ".providers-section", ".insurance-section"];
+
+window.showVisitHistory = function () {
+    PAGE_SECTIONS.forEach(function (sel) {
+        document.querySelectorAll(sel).forEach(function (el) { el.style.display = "none"; });
+    });
+    var sec = document.getElementById("visitHistorySection");
+    if (sec) sec.style.display = "";
+
+    document.querySelectorAll(".vh-filter-btn").forEach(function (b) { b.classList.remove("active"); });
+    var allBtn = document.querySelector(".vh-filter-btn");
+    if (allBtn) allBtn.classList.add("active");
+
+    filterVisits("all", null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+window.hideVisitHistory = function () {
+    var sec = document.getElementById("visitHistorySection");
+    if (sec) sec.style.display = "none";
+    PAGE_SECTIONS.forEach(function (sel) {
+        document.querySelectorAll(sel).forEach(function (el) { el.style.display = ""; });
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+window.filterVisits = function (status, btn) {
+    document.querySelectorAll(".vh-filter-btn").forEach(function (b) { b.classList.remove("active"); });
+    if (btn) btn.classList.add("active");
+
+    var cards  = document.querySelectorAll("#vhList .vh-card");
+    var hasAny = false;
+    cards.forEach(function (card) {
+        var match = status === "all" || card.dataset.status === status;
+        card.style.display = match ? "" : "none";
+        if (match) hasAny = true;
+    });
+
+    var emptyEl = document.getElementById("vhEmpty");
+    if (emptyEl) emptyEl.style.display = hasAny ? "none" : "";
+};
+
+window.cancelVisit = function (btn) {
+    if (!confirm("هل تريد إلغاء هذه الزيارة؟")) return;
+    var card = btn.closest(".vh-card");
+    if (!card) return;
+
+    card.dataset.status = "cancelled";
+    var statusEl = card.querySelector(".vh-card-status");
+    if (statusEl) {
+        statusEl.className   = "vh-card-status vh-status-cancelled";
+        statusEl.textContent = "ملغاة";
+    }
+    var actionsEl = card.querySelector(".vh-card-actions");
+    if (actionsEl) {
+        actionsEl.innerHTML = '<button class="vh-action-btn" onclick="rebookVisit(this)"><i class="fa-solid fa-rotate-right"></i> إعادة الحجز</button>';
+    }
+};
+
+
+
+window.rebookVisit = function () {
+    hideVisitHistory();
+    setTimeout(function () {
+        var sec = document.querySelector(".providers-section");
+        if (sec) sec.scrollIntoView({ behavior: "smooth" });
+    }, 300);
 };
 
 
 function initEmergencyModal() {
-    const overlay = document.getElementById("emergencyModal");
+    var overlay = document.getElementById("emergencyModal");
     if (overlay) {
-        overlay.addEventListener("click", function (e) {
-            if (e.target === overlay) closeEmergency();
-        });
+        overlay.addEventListener("click", function (e) { if (e.target === overlay) closeEmergency(); });
     }
-
-    document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") closeEmergency();
-    });
 }
 
 window.openEmergency = function () {
-    const modal = document.getElementById("emergencyModal");
-    if (modal) {
-        modal.style.display = "flex";
-        document.body.style.overflow = "hidden";
-    }
+    var modal = document.getElementById("emergencyModal");
+    if (modal) { modal.style.display = "flex"; document.body.style.overflow = "hidden"; }
 };
 
 window.closeEmergency = function () {
-    const modal = document.getElementById("emergencyModal");
-    if (modal) {
-        modal.style.display = "none";
-        document.body.style.overflow = "";
-    }
+    var modal = document.getElementById("emergencyModal");
+    if (modal) { modal.style.display = "none"; document.body.style.overflow = ""; }
 };
 
 
-function initSymptomCards() {
-    document.querySelectorAll(".symptom-card[data-spec]").forEach(function (card) {
-        card.addEventListener("click", function (e) {
-            e.preventDefault();
-            const spec = card.dataset.spec || "";
-            if (spec) {
-                window.location.href = "requestVisit.html?spec=" + encodeURIComponent(spec);
-            } else {
-                window.location.href = "requestVisit.html";
-            }
-        });
-    });
-}
+var _bookingSource = "account";
 
-function initBookingModal() {
-    const overlay = document.getElementById("bookingOverlay");
-    if (overlay) {
-        overlay.addEventListener("click", function (e) {
-            if (e.target === overlay) closeBookingModal();
-        });
+window.switchBookingSource = function (mode) {
+    _bookingSource = mode;
+    var btnAccount = document.getElementById("btnUseAccount");
+    var btnNew     = document.getElementById("btnUseNew");
+    var preview    = document.getElementById("bookingAccountPreview");
+    var newFields  = document.getElementById("bookingNewFields");
+    var hidden     = document.getElementById("bookingUseAccount");
+
+    if (mode === "account") {
+        if (btnAccount) btnAccount.classList.add("active");
+        if (btnNew)     btnNew.classList.remove("active");
+        if (preview)    preview.style.display  = "";
+        if (newFields)  newFields.style.display = "none";
+        if (hidden)     hidden.value            = "true";
+        clearFormErrors(document.getElementById("bookingForm"));
+    } else {
+        if (btnNew)     btnNew.classList.add("active");
+        if (btnAccount) btnAccount.classList.remove("active");
+        if (preview)    preview.style.display  = "none";
+        if (newFields)  newFields.style.display = "";
+        if (hidden)     hidden.value            = "false";
     }
-
-    document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
-            closeBookingModal();
-            closeSuccessModal();
-        }
-    });
-
-    const form = document.getElementById("bookingForm");
-    if (form) {
-        form.addEventListener("submit", handleBookingSubmit);
-    }
-}
+};
 
 window.openBookingModal = function (btn) {
-    const card = btn ? btn.closest(".provider-card") : null;
-
+    var card = btn ? btn.closest(".provider-card") : null;
     if (card) {
-        const id       = card.dataset.id    || "";
-        const name     = card.dataset.name  || "";
-        const spec     = card.dataset.spec  || "";
-        const price    = card.dataset.price || "";
-        const img      = card.dataset.img   || "";
-        const type     = card.dataset.type  || "doctor";
+        var type  = card.dataset.type  || "doctor";
+        var name  = card.dataset.name  || "";
+        var spec  = card.dataset.spec  || "";
+        var price = card.dataset.price || "";
+        var img   = card.dataset.img   || "";
+        var id    = card.dataset.id    || "";
 
-        const docImg    = document.querySelector(".booking-provider-img img");
-        const docName   = document.querySelector(".booking-provider-name");
-        const docSpec   = document.querySelector(".booking-provider-spec");
-        const docPrice  = document.querySelector(".booking-provider-price");
-        const hiddenId  = document.getElementById("bookingDoctorId");
-        const hiddenType= document.getElementById("bookingVisitType");
+        var setTxt = function (elId, val) { var el = document.getElementById(elId); if (el) el.textContent = val; };
+        var elImg  = document.getElementById("bookingProviderImg");
+        if (elImg) elImg.src = img;
+        setTxt("bookingProviderName",  name);
+        setTxt("bookingProviderSpec",  spec);
+        setTxt("bookingProviderPrice", "سعر الكشف " + price + " جنيه");
+        setTxt("bookingModalTitle",    type === "nurse" ? "طلب ممرض/ة" : "طلب زيارة");
 
-        if (docImg)    docImg.src          = img;
-        if (docName)   docName.textContent  = name;
-        if (docSpec)   docSpec.textContent  = spec;
-        if (docPrice)  docPrice.textContent = "سعر الكشف " + price + " جنيه";
-        if (hiddenId)  hiddenId.value       = id;
-        if (hiddenType)hiddenType.value     = type;
-
-        const isNurse = type === "nurse";
-        const modalTitle  = document.querySelector(".booking-modal-title");
-        const submitBtn   = document.querySelector("#bookingForm .submit-btn");
-        if (modalTitle) modalTitle.textContent = isNurse ? "طلب ممرض" : "طلب زيارة";
-        if (submitBtn)  submitBtn.textContent  = isNurse ? "طلب ممرض" : "طلب طبيب";
+        var elId   = document.getElementById("bookingProviderId");
+        var elType = document.getElementById("bookingVisitType");
+        if (elId)   elId.value   = id;
+        if (elType) elType.value = type;
     }
 
-    const overlay = document.getElementById("bookingOverlay");
-    if (overlay) {
-        overlay.classList.add("open");
-        document.body.style.overflow = "hidden";
-    }
+    var user   = getAccountData();
+    var setVal = function (elId, val) { var el = document.getElementById(elId); if (el) el.textContent = val || "—"; };
+    setVal("previewName",    user.FullName);
+    setVal("previewPhone",   user.Phone);
+    setVal("previewAddress", user.Address);
+    setVal("previewEmail",   user.Email || "غير مضاف");
+
+    switchBookingSource("account");
+    var form = document.getElementById("bookingForm");
+    if (form) { form.reset(); clearFormErrors(form); }
+    resetFileLabel();
+
+    var overlay = document.getElementById("bookingOverlay");
+    if (overlay) { overlay.classList.add("open"); document.body.style.overflow = "hidden"; }
 };
 
 window.closeBookingModal = function () {
-    const overlay = document.getElementById("bookingOverlay");
+    var overlay = document.getElementById("bookingOverlay");
+    if (overlay) { overlay.classList.remove("open"); document.body.style.overflow = ""; }
+};
+
+function initBookingModal() {
+    var overlay = document.getElementById("bookingOverlay");
     if (overlay) {
-        overlay.classList.remove("open");
-        document.body.style.overflow = "";
+        overlay.addEventListener("click", function (e) { if (e.target === overlay) closeBookingModal(); });
     }
-};
-
-window.closeBookingIfOutside = function (e) {
-    if (e.target === document.getElementById("bookingOverlay")) {
-        closeBookingModal();
-    }
-};
-
+    var form = document.getElementById("bookingForm");
+    if (form) form.addEventListener("submit", handleBookingSubmit);
+}
 
 async function handleBookingSubmit(e) {
     e.preventDefault();
-
-    const form      = document.getElementById("bookingForm");
-    const submitBtn = form.querySelector(".submit-btn");
+    var form      = document.getElementById("bookingForm");
+    var submitBtn = form ? form.querySelector(".submit-btn") : null;
     if (!form || !submitBtn) return;
-
     if (!validateBookingForm(form)) return;
 
-    const originalText = submitBtn.textContent;
+    var originalHTML   = submitBtn.innerHTML;
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري الإرسال...';
 
     try {
-
-        await new Promise(r => setTimeout(r, 800));
-
+        await new Promise(function (r) { setTimeout(r, 800); });
         closeBookingModal();
         form.reset();
         resetFileLabel();
         openSuccessModal();
-
     } catch (err) {
         showFormError("حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً");
-        console.error("Booking submit error:", err);
+        console.error(err);
     } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
+        submitBtn.disabled  = false;
+        submitBtn.innerHTML = originalHTML;
     }
 }
 
+
 function validateBookingForm(form) {
     clearFormErrors(form);
-    let valid = true;
+    var valid = true;
 
-    const fields = [
-        { name: "fullName",  label: "الاسم بالكامل",             minLength: 3 },
-        { name: "phone",     label: "رقم الهاتف",                pattern: /^01[0-9]{9}$/, patternMsg: "رقم الهاتف غير صحيح (11 رقم يبدأ بـ 01)" },
-        { name: "address",   label: "العنوان",                   minLength: 10 },
-        { name: "datetime",  label: "الموعد",                    future: true  },
-        { name: "condition", label: "الحالة المرضية",             minLength: 5 },
-    ];
-
-    fields.forEach(function (rule) {
-        const input = form.elements[rule.name];
-        if (!input) return;
-
-        const val = input.value.trim();
-
-        if (!val) {
-            showFieldError(input, rule.label + " مطلوب");
-            valid = false;
-            return;
-        }
-
-        if (rule.minLength && val.length < rule.minLength) {
-            showFieldError(input, rule.label + " يجب أن يكون " + rule.minLength + " أحرف على الأقل");
-            valid = false;
-            return;
-        }
-
-        if (rule.pattern && !rule.pattern.test(val)) {
-            showFieldError(input, rule.patternMsg || rule.label + " غير صحيح");
-            valid = false;
-            return;
-        }
-
-        if (rule.future) {
-            const selected = new Date(val);
-            if (selected <= new Date()) {
-                showFieldError(input, "يجب اختيار موعد في المستقبل");
-                valid = false;
-                return;
-            }
-        }
-    });
-
-    const emailInput = form.elements["email"];
-    if (emailInput && emailInput.value.trim()) {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(emailInput.value.trim())) {
-            showFieldError(emailInput, "البريد الإلكتروني غير صحيح");
-            valid = false;
+    if (_bookingSource === "new") {
+        [
+            { name: "fullName", label: "الاسم بالكامل", minLength: 3 },
+            { name: "phone",    label: "رقم الهاتف", pattern: /^01[0-9]{9}$/, patternMsg: "رقم الهاتف غير صحيح (11 رقم يبدأ بـ 01)" },
+            { name: "address",  label: "العنوان", minLength: 10 }
+        ].forEach(function (rule) {
+            var input = form.elements[rule.name];
+            if (!input) return;
+            var val = input.value.trim();
+            if (!val) { showFieldError(input, rule.label + " مطلوب"); valid = false; return; }
+            if (rule.minLength && val.length < rule.minLength) { showFieldError(input, rule.label + " يجب أن يكون " + rule.minLength + " أحرف على الأقل"); valid = false; return; }
+            if (rule.pattern && !rule.pattern.test(val)) { showFieldError(input, rule.patternMsg); valid = false; }
+        });
+        var emailInput = form.elements["email"];
+        if (emailInput && emailInput.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+            showFieldError(emailInput, "البريد الإلكتروني غير صحيح"); valid = false;
         }
     }
+
+    var dt = form.elements["datetime"];
+    if (!dt || !dt.value) { showFieldError(dt, "يرجى اختيار الموعد"); valid = false; }
+    else if (new Date(dt.value) <= new Date()) { showFieldError(dt, "يجب اختيار موعد في المستقبل"); valid = false; }
+
+    var cond = form.elements["condition"];
+    if (!cond || !cond.value.trim()) { showFieldError(cond, "يرجى ذكر الحالة المرضية"); valid = false; }
 
     return valid;
 }
 
 function showFieldError(input, message) {
+    if (!input) return;
     input.classList.add("input-error");
-    const err = document.createElement("span");
-    err.className = "field-error-msg";
+    var err       = document.createElement("span");
+    err.className   = "field-error-msg";
     err.textContent = message;
-    err.style.cssText = "color:#e53838;font-size:11px;font-weight:600;display:block;margin-top:4px;";
     input.parentNode.appendChild(err);
 }
 
 function clearFormErrors(form) {
-    form.querySelectorAll(".input-error").forEach(el => el.classList.remove("input-error"));
-    form.querySelectorAll(".field-error-msg").forEach(el => el.remove());
+    if (!form) return;
+    form.querySelectorAll(".input-error").forEach(function (el) { el.classList.remove("input-error"); });
+    form.querySelectorAll(".field-error-msg").forEach(function (el) { el.remove(); });
+    var errBox = document.getElementById("bookingFormError");
+    if (errBox) errBox.remove();
 }
 
 function showFormError(message) {
-    let errBox = document.getElementById("bookingFormError");
+    var errBox = document.getElementById("bookingFormError");
     if (!errBox) {
         errBox = document.createElement("div");
         errBox.id = "bookingFormError";
         errBox.style.cssText = "background:#fde8e8;color:#e53838;padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:12px;";
-        const form = document.getElementById("bookingForm");
-        form.insertBefore(errBox, form.firstChild);
+        var form = document.getElementById("bookingForm");
+        if (form) form.insertBefore(errBox, form.firstChild);
     }
     errBox.textContent = message;
 }
 
 
-function getAntiForgeryToken() {
-    const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
-    return tokenInput ? tokenInput.value : "";
-}
-
-
-
-function openSuccessModal() {
-    const overlay = document.getElementById("successOverlay");
-    if (overlay) {
-        overlay.classList.add("open");
-        document.body.style.overflow = "hidden";
-    }
-}
-
-window.closeSuccessModal = function () {
-    const overlay = document.getElementById("successOverlay");
-    if (overlay) {
-        overlay.classList.remove("open");
-        document.body.style.overflow = "";
-    }
-};
-
 
 function initFileUpload() {
-    const fileInput = document.getElementById("nationalId");
-    const fileLabel = document.getElementById("nationalIdLabel");
+    var fileInput = document.getElementById("nationalId");
+    var fileLabel = document.getElementById("nationalIdLabel");
     if (!fileInput || !fileLabel) return;
-
     fileInput.addEventListener("change", function () {
         if (fileInput.files && fileInput.files[0]) {
-            const file = fileInput.files[0];
-
+            var file = fileInput.files[0];
             if (file.size > 5 * 1024 * 1024) {
                 alert("حجم الملف كبير جداً. الحد الأقصى 5 ميجابايت.");
                 fileInput.value = "";
                 resetFileLabel();
                 return;
             }
-
-            fileLabel.innerHTML =
-                '<i class="fa-solid fa-check-circle" style="color:#28a745;margin-left:6px;"></i>' +
-                file.name;
+            fileLabel.innerHTML = '<i class="fa-solid fa-circle-check" style="color:#28a745;"></i> ' + file.name;
         } else {
             resetFileLabel();
         }
@@ -329,57 +358,35 @@ function initFileUpload() {
 }
 
 function resetFileLabel() {
-    const fileLabel = document.getElementById("nationalIdLabel");
-    if (fileLabel) {
-        fileLabel.innerHTML = '<i class="fa-solid fa-upload"></i> رفع صورة بطاقة الرقم القومي';
-    }
-    const fileInput = document.getElementById("nationalId");
-    if (fileInput) fileInput.value = "";
-}
-
-async function loadVisitHistory() {
-    const container = document.getElementById("visitHistoryList");
-    if (!container) return;
-
-    const demoVisits = [
-        { id: 1, doctorName: "د. محمد محمود", specialization: "عظام", visitDate: "2026-03-15T10:00:00", status: "completed", price: 500 },
-        { id: 2, doctorName: "أ. هالة مصطفى",  specialization: "تمريض", visitDate: "2026-04-02T14:30:00", status: "confirmed", price: 200 },
-        { id: 3, doctorName: "د. سارة أحمد",   specialization: "نساء وتوليد", visitDate: "2026-04-20T09:00:00", status: "pending",   price: 350 },
-    ];
-    renderVisitHistory(demoVisits, container);
+    var lbl = document.getElementById("nationalIdLabel");
+    if (lbl) lbl.innerHTML = '<i class="fa-solid fa-upload"></i> رفع صورة بطاقة الرقم القومي';
+    var inp = document.getElementById("nationalId");
+    if (inp) inp.value = "";
 }
 
 
-
-async function loadNotificationCount() {
-    const badge = document.getElementById("notifBadge");
-    if (!badge) return;
-
-    try {
-        const response = await fetch("/Notification/Unread");
-        if (!response.ok) return;
-        const data = await response.json();
-        if (data.count > 0) {
-            badge.textContent = data.count;
-            badge.style.display = "flex";
-        }
-    } catch (err) {
-    }
+function openSuccessModal() {
+    var overlay = document.getElementById("successOverlay");
+    if (overlay) { overlay.classList.add("open"); document.body.style.overflow = "hidden"; }
 }
 
-
-window.closeSearchDropdown = function () {
-    const dropdown = document.getElementById("searchDropdown");
-    if (dropdown) dropdown.style.display = "none";
+window.closeSuccessModal = function () {
+    var overlay = document.getElementById("successOverlay");
+    if (overlay) { overlay.classList.remove("open"); document.body.style.overflow = ""; }
 };
 
 
-document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener("click", function (e) {
-        const target = document.querySelector(anchor.getAttribute("href"));
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-    });
+
+document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    closeBookingModal();
+    closeSuccessModal();
+    closeEmergency();
+    closeNotifMenu();
 });
+
+
+function getAntiForgeryToken() {
+    var el = document.querySelector('input[name="__RequestVerificationToken"]');
+    return el ? el.value : "";
+}
